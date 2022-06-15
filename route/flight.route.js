@@ -10,8 +10,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const movieId = await createFlight(req.body);
-        res.status(201).json({_id: movieId});
+        const flightId = await createFlight(req.body);
+        res.status(201).json({_id: flightId});
     }catch (err){
         res.status(err?.status || 500).json(err);
     }
@@ -19,8 +19,8 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try{
-        const movie = await findFlightById(req.params.id);
-        res.json(movie);
+        const flight = await findFlightById(req.params.id);
+        res.json(flight);
     } catch(err) {
         res.status(err?.status || 400).json(err);
     }

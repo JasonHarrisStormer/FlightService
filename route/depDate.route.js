@@ -4,8 +4,8 @@ const { createFlight: createFlight, findMovieById: findFlightById, findAllMovies
 // A router functions the same as your standard app for the most part, but it's a subsection of your app
 
 router.get('/', async (req, res) => {
-    const movies = await findAllFlights();
-    res.json(movies);
+    const depDate = await findAllFlights();
+    res.json(depDate);
 });
 
 router.post('/', async (req, res) => {
