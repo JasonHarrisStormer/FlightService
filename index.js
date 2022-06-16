@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const logger = require('./middleware/logger');
 require('dotenv').config(); // One and done so I don't need the value from require
 
 const app = express();

@@ -7,15 +7,17 @@ const starFlight = {
     flightNumber: 001,
     depCity: "Charlotte",
     depTime: 1100,
+    depDate: 07/08/2022,
     arrCity: "New York City",
     arrTime: 1300,
-    passCap: 100,
+    arrDate: 07/08/2022,
+    maxPass: 500,
     currPass: [{ 
         firstName: "John",
         lastName: "Cena",
         passId: 'JOHNCENA'
     }],
-    atLimit: this.currPass.size() > passCap
+    atLimit: "boolean" // {this: currPass.length() > passCap}
 };
 
 // Create the Flight schema
@@ -23,9 +25,11 @@ const flightSchema = new Schema({
     flightNumber: Number,
     depCity: String,
     depTime: Number,
+    depDate: Date,
     arrCity: String,
     arrTime: Number,
-    passCap: {  // setting passenger limits
+    arrDate: Date,
+    maxPass: {  // setting passenger limits
         type: Number,
         // Tuple with first element being the min value, second being the error message
         min: [0, 'Flight cannot have a less than 0 passengers, how do you make a -1 person?'],

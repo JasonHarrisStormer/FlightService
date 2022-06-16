@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createFlight: createFlight, findMovieById: findFlightById, findAllMovies: findAllFlights } = require('../controllers/movie.controller');
+const { createFlight: createFlight, findMovieById: findFlightById, findAllMovies: findAllFlights } = require('../controllers/Flight.controller');
 
 // A router functions the same as your standard app for the most part, but it's a subsection of your app
 
@@ -27,10 +27,10 @@ router.get('/:id', async (req, res) => {
     
 });
 
-router.get('/:depDate', async (req, res) => {
+router.get('/:arrTime', async (req, res) => {
     try{
-        const depDate = await findFlightByDepDate(req.params.depDate);
-        res.json(depDate);
+        const arrTime = await findFlightByArrTime(req.params.arrTime);
+        res.json(arrTime);
     } catch(err) {
         res.status(err?.status || 400).json(err);
     }
@@ -41,6 +41,16 @@ router.get('/:arrDate', async (req, res) => {
     try{
         const arrDate = await findFlightArrDate(req.params.arrDate);
         res.json(arrDate);
+    } catch(err) {
+        res.status(err?.status || 400).json(err);
+    }
+    
+});
+
+router.get('/:arrCity', async (req, res) => {
+    try{
+        const arrCity = await findFlightArrCity(req.params.arrCity);
+        res.json(arrCity);
     } catch(err) {
         res.status(err?.status || 400).json(err);
     }
