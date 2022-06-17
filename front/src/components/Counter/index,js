@@ -1,0 +1,4 @@
+import { ClassCounter } from "./ClassCounter";
+import { FunctionCounter } from "./FunctionCounter";
+
+export { ClassCounter, FunctionCounter};

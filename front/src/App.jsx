@@ -1,9 +1,22 @@
 import { Form } from "./Form";
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AppNav } from './features';
+import { Landing, Flights, Error, ReduxExamples } from './Pages';
+import ThemeContext, { themes } from './contexts/ThemeContext';
 import './App.css';
 
 
 const App = () =>{
+    const [currTheme, setCurrTheme] = useState(themes.light);
 
+    const toggleTheme = () => {
+        if (currTheme === themes.light) {
+            setCurrTheme(themes.dark);
+        } else {
+            setCurrTheme(themes.light);
+        }
+    }
 
     return(
         <>
