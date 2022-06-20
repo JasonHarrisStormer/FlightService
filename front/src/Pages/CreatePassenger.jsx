@@ -10,15 +10,15 @@ export const CreatePassenger = () => {
     const lastNameRef = useRef();
     const flightsRef = useRef();
     
-    //const dispatcher = useDispatch();
+    const dispatcher = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault(); // prevents page refresh on submit
         // flightIdRef.current.value
-        // dispatcher({type:'CREATE_PASSENGER', payload:passIDRef.current.value});
-        // dispatcher({type:'CREATE_PASSENGER', payload:firstNameRef.current.value});
-        // dispatcher({type:'CREATE_PASSENGER', payload:lastNameRef.current.value});
-        // dispatcher({type:'CREATE_PASSENGER', payload:flightsRef.current.value});
+        dispatcher({type:'CREATE_PASSENGER', payload:passIDRef.current.value});
+        dispatcher({type:'CREATE_PASSENGER', payload:firstNameRef.current.value});
+        dispatcher({type:'CREATE_PASSENGER', payload:lastNameRef.current.value});
+        dispatcher({type:'CREATE_PASSENGER', payload:flightsRef.current.value});
 
         passIDRef.current.value = null;
         firstNameRef.current.value = null;

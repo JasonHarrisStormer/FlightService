@@ -14,19 +14,19 @@ export const CreateFlight = () => {
     const arrTimeRef = useRef();
     const arrDateRef = useRef();
     
-    // const dispatcher = useDispatch();
+    const dispatcher = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault(); // prevents page refresh on submit
         
-        // dispatcher({type: 'CREATE_FLIGHT', payload: flightIdRef.current.value}); // sending the data to the store via dispatcher
-        // dispatcher({type: 'CREATE_FLIGHT', payload: maxPassRef.current.value});
-        // dispatcher({type: 'CREATE_FLIGHT', payload: depCityRef.current.value});
-        // dispatcher({type: 'CREATE_FLIGHT', payload: depDateRef.current.value});
-        // dispatcher({type: 'CREATE_FLIGHT', payload: depTimeRef.current.value});
-        // dispatcher({type: 'CREATE_FLIGHT', payload: arrCityRef.current.value});
-        // dispatcher({type: 'CREATE_FLIGHT', payload: arrDateRef.current.value});
-        // dispatcher({type: 'CREATE_FLIGHT', payload: arrTimeRef.current.value});
+        dispatcher({type: 'CREATE_FLIGHT', payload: flightIdRef.current.value}); // sending the data to the store via dispatcher
+        dispatcher({type: 'CREATE_FLIGHT', payload: maxPassRef.current.value});
+        dispatcher({type: 'CREATE_FLIGHT', payload: depCityRef.current.value});
+        dispatcher({type: 'CREATE_FLIGHT', payload: depDateRef.current.value});
+        dispatcher({type: 'CREATE_FLIGHT', payload: depTimeRef.current.value});
+        dispatcher({type: 'CREATE_FLIGHT', payload: arrCityRef.current.value});
+        dispatcher({type: 'CREATE_FLIGHT', payload: arrDateRef.current.value});
+        dispatcher({type: 'CREATE_FLIGHT', payload: arrTimeRef.current.value});
 
         flightIdRef.current.value=null; // clearing out text boxes on button click
         maxPassRef.current.value=null;
