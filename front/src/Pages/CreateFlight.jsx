@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux"; // change the store, and useSelector is used to read the store
 import { Center } from "../components/Formatting/StyledComponents";
+//import planes from '../components/Formatting/planes'
 
 export const CreateFlight = () => {
 
@@ -43,8 +44,8 @@ export const CreateFlight = () => {
                 <div><label htmlFor="flight">Flight ID Number: </label>
                 <input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div><div>
                 <br />
-                <label htmlFor="maxPass" >Maximum Passenger Capacity: </label>
-                <input id="maxPass" placeholder="Maximum Passenger Capacity" ref={maxPassRef}/></div><div>
+                <label htmlFor="maxPass" >Select Plane Type: </label>
+                <input id="maxPass" placeholder="Select Plane Type" ref={maxPassRef}/></div><div>
                 <br />
                 <label htmlFor="depCity">Departure City: </label>
                 <input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div><div>

@@ -1,9 +1,0 @@
-/.metadata/
-
-# libraries
-.rar
-.zip
-.jar
-
-# configs
-.env
