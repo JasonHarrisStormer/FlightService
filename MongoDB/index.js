@@ -15,10 +15,11 @@ app.use(cors()); // allows all traffic
 // This binds a router object to the url /movies
 // Any HTTP request starting with /movies will come here
 const flightRouter =  require('./route/flight.route.js');
+const passengerRouter = require('./route/passenger.route')
 
 app.use('/flight', flightRouter);
-app.use('/depDate', require('./route/depDate.route'));
-app.use('/arrDate', require('./route/arrDate.route'));
+app.use('/passenger', passengerRouter);
+
 
 app.all('*', (req, res) => {
     res.status(404).send('We don\'t have the resource you\'re looking for.');
