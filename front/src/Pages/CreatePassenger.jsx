@@ -4,7 +4,6 @@ import axios from 'axios';
 
 export const CreatePassenger = () => {
 
-    const passIDRef = useRef();
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const flightsRef = useRef();
@@ -14,11 +13,10 @@ export const CreatePassenger = () => {
         
         try{
             await axios.post('http://localhost:8086/passenger', 
-                        {passengerId : passIDRef, firstName : firstNameRef, lastName : lastNameRef, flights : flightsRef})
+                        {firstName : firstNameRef, lastName : lastNameRef, flights : flightsRef})
         }catch(err){
             console.log('Something went wrong!!!');
         }
-        passIDRef.current.value = null;
         firstNameRef.current.value = null;
         lastNameRef.current.value = null;
         flightsRef.current.value = null;
@@ -26,9 +24,7 @@ export const CreatePassenger = () => {
     return (
         <Center>
             <form onSubmit={handleSubmit}>
-                <div><label htmlFor="passID">Flight ID Number: </label>
-                <input id="passID" placeholder="Enter Passenger ID Number" ref={passIDRef}/></div><div>
-                <br />
+                <div>
                 <label htmlFor="firstname" >First Name: </label>
                 <input id="firstName" placeholder="First Name" ref={firstNameRef}/></div><div>
                 <br />

@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { useSelector } from 'react-redux';
 import { NavSection } from './NavSection';
 import { NavItem } from './NavItem';
 import { NavLink } from './NavLink';
