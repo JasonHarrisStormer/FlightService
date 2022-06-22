@@ -14,11 +14,11 @@ const App = () =>{
             
             <div className="App">
             <header header className="App-header">
-                <img src={ logo } className="App-logo" alt="logo" height="300"/> 
+                <img src={ logo } className="App-logo" alt="logo" height="250"/> 
                 <h1><div>Flight Services</div></h1></header>       
             
             </div>
-            <div><AppNav /></div>
+            <Center><div><AppNav /></div></Center>
             <Routes>
             <Route path="/" element={<Landing />} />
                     <Route path="/flights" element={<Flights />} />

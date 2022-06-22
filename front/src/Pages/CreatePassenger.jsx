@@ -1,25 +1,23 @@
-import { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux"; // change the store, and useSelector is used to read the store
+import { useRef } from "react";
 import { Center } from "../components/Formatting/StyledComponents";
+import axios from 'axios';
 
 export const CreatePassenger = () => {
 
-    const {passenger, setPassID} = useState('');
     const passIDRef = useRef();
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const flightsRef = useRef();
-    
-    const dispatcher = useDispatch();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault(); // prevents page refresh on submit
-        // flightIdRef.current.value
-        dispatcher({type:'CREATE_PASSENGER', payload:passIDRef.current.value});
-        dispatcher({type:'CREATE_PASSENGER', payload:firstNameRef.current.value});
-        dispatcher({type:'CREATE_PASSENGER', payload:lastNameRef.current.value});
-        dispatcher({type:'CREATE_PASSENGER', payload:flightsRef.current.value});
-
+        
+        try{
+            await axios.post('http://localhost:8086/passenger', 
+                        {passengerId : passIDRef, firstName : firstNameRef, lastName : lastNameRef, flights : flightsRef})
+        }catch(err){
+            console.log('Something went wrong!!!');
+        }
         passIDRef.current.value = null;
         firstNameRef.current.value = null;
         lastNameRef.current.value = null;
@@ -27,7 +25,7 @@ export const CreatePassenger = () => {
     }
     return (
         <Center>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div><label htmlFor="passID">Flight ID Number: </label>
                 <input id="passID" placeholder="Enter Passenger ID Number" ref={passIDRef}/></div><div>
                 <br />

@@ -1,11 +1,10 @@
-import { useState, useRef } from "react";
-import { useDispatch } from "react-redux"; // change the store, and useSelector is used to read the store
+import { useRef } from "react";
 import { Center } from "../components/Formatting/StyledComponents";
+import axios from 'axios';
 //import planes from '../components/Formatting/planes'
 
 export const CreateFlight = () => {
 
-    const {flight, setFlightID} = useState();
     const flightIdRef = useRef();
     const maxPassRef = useRef();
     const depCityRef = useRef();
@@ -15,19 +14,17 @@ export const CreateFlight = () => {
     const arrTimeRef = useRef();
     const arrDateRef = useRef();
     
-    const dispatcher = useDispatch();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault(); // prevents page refresh on submit
         
-        dispatcher({type: 'CREATE_FLIGHT', payload: flightIdRef.current.value}); // sending the data to the store via dispatcher
-        dispatcher({type: 'CREATE_FLIGHT', payload: maxPassRef.current.value});
-        dispatcher({type: 'CREATE_FLIGHT', payload: depCityRef.current.value});
-        dispatcher({type: 'CREATE_FLIGHT', payload: depDateRef.current.value});
-        dispatcher({type: 'CREATE_FLIGHT', payload: depTimeRef.current.value});
-        dispatcher({type: 'CREATE_FLIGHT', payload: arrCityRef.current.value});
-        dispatcher({type: 'CREATE_FLIGHT', payload: arrDateRef.current.value});
-        dispatcher({type: 'CREATE_FLIGHT', payload: arrTimeRef.current.value});
+        try{
+            await axios.post('http://localhost:8086/flight', 
+                        {flightId : flightIdRef, depCity : depCityRef, depTime : depTimeRef, depDate : depDateRef, arrCity : arrCityRef, arrTime : arrTimeRef, 
+                            arrDate : arrDateRef, maxPass : maxPassRef})
+        }catch(err){
+            console.log('Something went wrong!!!');
+        }
 
         flightIdRef.current.value=null; // clearing out text boxes on button click
         maxPassRef.current.value=null;
@@ -40,12 +37,12 @@ export const CreateFlight = () => {
     }
     return (
         <Center>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div><label htmlFor="flight">Flight ID Number: </label>
                 <input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div><div>
                 <br />
-                <label htmlFor="maxPass" >Select Plane Type: </label>
-                <input id="maxPass" placeholder="Select Plane Type" ref={maxPassRef}/></div><div>
+                <label htmlFor="maxPass" >Maximum Passengers: </label>
+                <input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div><div>
                 <br />
                 <label htmlFor="depCity">Departure City: </label>
                 <input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div><div>
