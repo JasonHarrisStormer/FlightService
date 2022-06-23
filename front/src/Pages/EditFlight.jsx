@@ -45,21 +45,37 @@ export const EditFlight = () => {
         <Center>
             {/* Transforming the flight array into an array of JSX elements for display and formatting */}
            <div>
-           return(
-                    <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); editFlight(flight.flightNumber)}}>
+          
+                    <form onSubmit= {(event) => { event.preventDefault(); editFlight(flight.flightNumber)}}>
                         <div key={flight._id} >
                             
-                            <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
-                            <div><strong>Departure City: </strong>{flight.depCity}</div>
-                            <div><strong>Departure Time: </strong>{flight.depTime} <strong>Departure Date: </strong>{flight.depDate}</div>
-                            <div><strong>Arrival City: </strong>{flight.arrCity}</div>
-                            <div><strong>Arrival Time: </strong>{flight.arrTime}<strong> Arrival Date: </strong>{flight.arrDate}</div>
-                            <div><strong>Number of Passengers: </strong>{flight.currPass}</div>
-                            <div><strong>Maximum Number of Passengers: </strong>{flight.maxPass}</div>
+                        <label htmlFor="flight">Flight ID Number: </label>
+                <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
+                
+                <label htmlFor="maxPass" >Maximum Passengers: </label>
+                <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
+                
+                <label htmlFor="depCity">Departure City: </label>
+                <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
+                
+                <label htmlFor="depTime">Departure Time: </label>
+                <div><input id="depTime" placeholder="Enter Departure Time" ref={depTimeRef}/></div>
+                
+                <label htmlFor="depDate">Departure Date: </label>
+                <div><input id="depDate" placeholder="Enter Departure Date" ref={depDateRef}/></div>
+                
+                <label htmlFor="arrCity">Arrival City: </label>
+                <div><input id="arrCity" placeholder="Enter Arrival City" ref={arrCityRef}/></div>
+                
+                <label htmlFor="arrTime">Arrival Time: </label>
+                <div><input id="arrTime" placeholder="Enter Arrival Time" ref={arrTimeRef}/></div>
+                
+                <label htmlFor="arrDate">Arrival Date: </label>
+                <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
+                
                             <input type="submit" value="Edit Flight" />
                         </div>
                     </form>
-                )
            </div>
         </Center>
     );

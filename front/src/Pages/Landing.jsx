@@ -4,7 +4,8 @@ import { Center } from "../components/Formatting/StyledComponents";
 export const Landing = () => {
     return(
         <Center>
-            Welcome to Flight Services!
+            <h2>Welcome to Flight Services
+               Management Portal!</h2>
         </Center>
     );
 }
