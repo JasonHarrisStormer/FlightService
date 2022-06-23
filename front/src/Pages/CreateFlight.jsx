@@ -26,18 +26,29 @@ export const CreateFlight = () => {
                         {flightNumber : flightIdRef.current.value, depCity : depCityRef.current.value, depTime : depTimeRef.current.value, depDate : depDateRef.current.value, arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, 
                             arrDate : arrDateRef.current.value, maxPass : maxPassRef.current.value});
                             navigate('../flights', {replace: true});
-        }catch(err){
-            console.log('Something went wrong!!!');
+        }catch(error){
+            if (error.message.indexOf("0") !=-1)
+            {
+                alert("This Flight Number has already been used!");
+            }
+            if(error.name === "mongoose:validatorError"){
+                alert("The input required inputs have not been entered. Please try again.")
+            }
+            else{
+            console.log(error);
+            }
+        }finally{
+                flightIdRef.current.value=null; // clearing out text boxes on button click
+                maxPassRef.current.value=null;
+                depCityRef.current.value=null;
+                depDateRef.current.value=null;
+                depTimeRef.current.value=null;
+                arrCityRef.current.value=null;
+                arrDateRef.current.value=null;
+                arrTimeRef.current.value=null;
         }
 
-        flightIdRef.current.value=null; // clearing out text boxes on button click
-        maxPassRef.current.value=null;
-        depCityRef.current.value=null;
-        depDateRef.current.value=null;
-        depTimeRef.current.value=null;
-        arrCityRef.current.value=null;
-        arrDateRef.current.value=null;
-        arrTimeRef.current.value=null;
+        
     }
     return (
         <Center>

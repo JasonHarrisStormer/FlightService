@@ -24,18 +24,18 @@ const starFlight = {
 const flightSchema = new Schema({
     flightNumber: {
         type: Number,
-        unique: true,
-        required: true
+        unique: [true, 'That flight has already been created.'],
+        required: [true, 'A flight number is required.'],
     },
     depCity: {
         type: String,
-        required: true
+        required: [true, 'The departure city is required.'],
     },
     depTime: Number,
     depDate: String,
     arrCity: {
         type: String,
-        required: true
+        required: [true, 'The arrival city is required.'],
     },
     arrTime: Number,
     arrDate: String,
