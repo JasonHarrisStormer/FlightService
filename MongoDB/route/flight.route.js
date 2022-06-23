@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     
 });
 
-// router.post('/:id', async (req, res) => {
+// router.put('/:id', async (req, res) => {
 //     try{
 //         const flightId = await updateFlight(req.body);
 //         res.status(201).json({_id: flightId});
