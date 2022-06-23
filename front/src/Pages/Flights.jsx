@@ -27,19 +27,20 @@ export const Flights = () => {
 
     return(
         <Center>
-            
+            <div class="container">
             {/* Transforming the flights araay into an array of JSX elements for display and formatting */}
-           <div>
             {flight.map((flight, index) => {
                 return(
-                    <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
+                    <form class="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
                         <div key={flight._id} >
                             
                             <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
                             <div><strong>Departure City: </strong>{flight.depCity}</div>
-                            <div><strong>Departure Time: </strong>{flight.depTime} <strong>Departure Date: </strong>{flight.depDate}</div>
+                            <div><strong>Departure Time: </strong>{flight.depTime}</div>
+                            <div><strong>Departure Date: </strong>{flight.depDate}</div>
                             <div><strong>Arrival City: </strong>{flight.arrCity}</div>
-                            <div><strong>Arrival Time: </strong>{flight.arrTime}<strong> Arrival Date: </strong>{flight.arrDate}</div>
+                            <div><strong>Arrival Time: </strong>{flight.arrTime}</div>
+                            <div><strong> Arrival Date: </strong>{flight.arrDate}</div>
                             <div><strong>Number of Passengers: </strong>{flight.currPass}</div>
                             <div><strong>Maximum Number of Passengers: </strong>{flight.maxPass}</div>
                             <input type="submit" value="Delete Flight" />

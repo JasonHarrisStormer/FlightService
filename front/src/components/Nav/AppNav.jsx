@@ -7,13 +7,13 @@ import { Nav } from './Nav';
 export const AppNav = () => {
 
     return (
-        <Nav backgroundColor='blue' color='white'>
+        <Nav backgroundColor='#87CEEB' color='black'>
             <NavSection jc="flex-start">
                 <NavItem>
                     <NavLink to="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink to="/flights" >Complete Flight List</NavLink>
+                    <NavLink to="/flights">Complete Flight List</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink to="/createflight"> Create Flight</NavLink>
