@@ -24,12 +24,19 @@ const starFlight = {
 const flightSchema = new Schema({
     flightNumber: {
         type: Number,
-        unique: true
+        unique: true,
+        required: true
     },
-    depCity: String,
+    depCity: {
+        type: String,
+        required: true
+    },
     depTime: Number,
     depDate: String,
-    arrCity: String,
+    arrCity: {
+        type: String,
+        required: true
+    },
     arrTime: Number,
     arrDate: String,
     maxPass: {  // setting passenger limits
