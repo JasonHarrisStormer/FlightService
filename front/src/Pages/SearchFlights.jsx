@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Center } from "../components/Formatting/StyledComponents";
 import axios from 'axios';
 
-export const CreatePassenger = () => {
+export const SearchFlights = () => {
 
     const firstNameRef = useRef();
     const lastNameRef = useRef();
@@ -24,15 +24,14 @@ export const CreatePassenger = () => {
     return (
         <Center>
             <form onSubmit={handleSubmit}>
-                <div>
-                <label htmlFor="firstname" >First Name: </label>
+                <div><label htmlFor="firstname" >First Name: </label></div><div>
                 <input id="firstName" placeholder="First Name" ref={firstNameRef}/></div><div>
                 <br />
-                <label htmlFor="lastName">Last Name: </label>
+                <label htmlFor="lastName">Last Name: </label></div><div>
                 <input id="lastName" placeholder="Last Name" ref={lastNameRef}/></div><div>
                 <br />
-                <label htmlFor="flights">Add Flights to Passenger: </label>
-                <input id="flights" placeholder="Flight Numbers" ref={flightsRef}/></div><div>
+                <label htmlFor="flights">Add Flights to Passenger: </label></div><div>
+                <input id="flights" placeholder="Flight Number(s)" ref={flightsRef}/></div><div>
                 <br />
                 <button onClick={handleSubmit}>Create Passenger</button></div>
             </form>

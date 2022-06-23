@@ -1,15 +1,15 @@
 const Flight = require('../models/Flight.model');
 
-const createFlight = async ({depCity, depTime, depDate, arrCity, arrTime, arrDate, flightId, curPass, maxPass}) => {
+const createFlight = async ({flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, curPass, maxPass}) => {
     try {
         const flight = new Flight({
+            flightNumber,
             depCity, 
             depTime, 
             depDate, 
             arrCity, 
             arrTime, 
-            arrDate, 
-            flightId, 
+            arrDate,  
             curPass, 
             maxPass
         }); // This alone does not save to the database, this just simply prepares for the database
@@ -23,9 +23,9 @@ const createFlight = async ({depCity, depTime, depDate, arrCity, arrTime, arrDat
         throw { status: 400, message: err };
     }
 }
-const updateFlight = async (id, {depCity, depTime, depDate, arrCity, arrTime, arrDate, flightId, curPass, maxPass}) =>{
+const updateFlight = async (id, {flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, curPass, maxPass}) =>{
     try{
-        await flight.updateFlight(_id, {$push: { flight: {depCity, depTime, depDate, arrCity, arrTime, arrDate, _id: flightId, curPass: {firstname, lastName}, maxPass}}});
+        await flight.updateFlight(_id, {$push: { flight: {flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, curPass, maxPass}}});
         if (flight == null){ // if no flight found, advise to create one
             throw `The flight id ${ id } does not exist, please create it first!`
         }
@@ -51,8 +51,13 @@ const findFlightById = async id => {
 }
 
 const findAllFlights = async (limit=0) => {
-    const movies = await Flight.find(); // GET all movies
-    return movies;
+    const flights = await Flight.find(); // GET all flights
+    return flights;
 }
 
-module.exports = { createFlight, findFlightById, findAllFlights, updateFlight };
+const deleteFlight = async id => {
+    const flights = await Flight.deleteOne({_id:id});
+    return flights;
+}
+
+module.exports = { createFlight, findFlightById, findAllFlights, updateFlight, deleteFlight };

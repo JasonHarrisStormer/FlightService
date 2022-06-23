@@ -22,31 +22,26 @@ const starFlight = {
 
 // Create the Flight schema
 const flightSchema = new Schema({
-    flightNumber: Number,
+    flightNumber: {
+        type: Number,
+        unique: true
+    },
     depCity: String,
     depTime: Number,
-    depDate: Date,
+    depDate: String,
     arrCity: String,
     arrTime: Number,
-    arrDate: Date,
+    arrDate: String,
     maxPass: {  // setting passenger limits
         type: Number,
         // Tuple with first element being the min value, second being the error message
         min: [0, 'Flight cannot have a less than 0 passengers, how do you make a -1 person?'],
-        max: [500, 'Flight cannot have a more than 100 passengers, there are not enough seats!']
+        max: [10, 'Flight cannot have a more than 10 passengers, there are not enough seats!']
         // By default, these fields are NOT required
     },
-    currPass: [{ // storing passenger lists
-        // This is the data being stored on the lead actors
-        firstName: String,
-        lastName: String,
-        passId: {
-            type: Schema.Types.ObjectId, // This symbolizes a MongoDB _id
-            ref: 'Passenger' // Refer to another Mongoose model
-        }
-    }],
-    atLimit: Boolean // is the passenger cap reached compared to the indexces of the current passenger array?
-
+    currPass: {
+        type: Number
+    },
 });
 
 //                        Model Name | Schema Object | Collection Name in Atlas

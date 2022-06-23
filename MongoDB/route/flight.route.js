@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createFlight, findFlightById, findAllFlights, updateFlight } = require('../controllers/Flight.controller');
+const { createFlight, findFlightById, findAllFlights, updateFlight, deleteFlight } = require('../controllers/Flight.controller');
 
 // A router functions the same as your standard app for the most part, but it's a subsection of your app
 
@@ -26,5 +26,23 @@ router.get('/:id', async (req, res) => {
     }
     
 });
+
+// router.post('/:id', async (req, res) => {
+//     try{
+//         const flightId = await updateFlight(req.body);
+//         res.status(201).json({_id: flightId});
+//     }catch (err){
+//         res.status(err?.status || 500).json(err);
+//     }
+// })
+
+router.delete('/:id', async(req, res) => {
+    try{
+        const flight = await deleteFlight(req.params.id);
+        res.json(flight);
+    }catch (err){
+        res.status(err?.status || 400).json(err);
+    }
+})
 
 module.exports = router;

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { AppNav } from './components/Nav';
 import { Center } from './components/Formatting';
-import { Landing, Flights, Passengers, Error, CreateFlight, CreatePassenger } from './pages';
+import { Landing, Flights, EditFlight, Error, CreateFlight, SearchFlights } from './pages';
 import logo from './Fly.jpg';
 
 
@@ -23,8 +23,8 @@ const App = () =>{
             <Route path="/" element={<Landing />} />
                     <Route path="/flights" element={<Flights />} />
                     <Route path="/createflight" element={<CreateFlight />} />
-                    <Route path="/createpassenger" element={<CreatePassenger />} />
-                    <Route path="/passengers" element={<Passengers />} />
+                    <Route path="/searchflight" element={<SearchFlights />} />
+                    <Route path="/editflight" element={<EditFlight />} />
                     <Route path="*" element={<Error />} />
             </Routes>
                 

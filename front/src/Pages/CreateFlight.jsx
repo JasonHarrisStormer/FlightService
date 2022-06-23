@@ -3,6 +3,7 @@ import { useRef } from "react";
 import axios from 'axios';
 import '../components/Formatting/InputForm.css';
 import { useNavigate } from "react-router-dom";
+import { Center } from "../components/Formatting";
 
 export const CreateFlight = () => {
 
@@ -39,8 +40,8 @@ export const CreateFlight = () => {
         arrTimeRef.current.value=null;
     }
     return (
-        <>
-            <form className="MyForm" onSubmit={handleSubmit}>
+        <Center>
+            <form onSubmit={handleSubmit}>
                 
                 <label htmlFor="flight">Flight ID Number: </label>
                 <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
@@ -66,11 +67,11 @@ export const CreateFlight = () => {
                 <label htmlFor="arrDate">Arrival Date: </label>
                 <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
                 
-                <input type="submit" value="createFlight" />
+                <input type="submit" value="Create Flight" />
                 
             </form>
         
-        </>
+        </Center>
 
     );
 }

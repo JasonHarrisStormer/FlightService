@@ -1,5 +1,5 @@
 import { Center } from "../components/Formatting/StyledComponents";
-import {useEffect, useState, useRef} from 'react';
+import {useEffect, useState} from 'react';
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -8,22 +8,20 @@ import { useNavigate } from "react-router-dom";
 export const Flights = () => {
     const [flight, setFlights] = useState([]);
     const navigate = useNavigate();
-    const flightIdRef = useRef();
 
     useEffect(() => {
         axios.get('http://localhost:8086/flight')
         .then(res => setFlights(res.data));
     });
 
-    const deleteFlight = async (event) => {
-            event.preventDefault(); // prevents page refresh on submit
-            
+    const deleteFlight = async (flightId) => {
             try{
-                await axios.delete('http://localhost:8086/flight', {data : {flightIdRef : flight._id}});
-                navigate('./flights', {replace:true});
-                //res.data.json;
+                console.log('Your Problem is not in Flights.jsx')
+                await axios.delete(`http://localhost:8086/flight/${flightId}`);
+                navigate('./', {replace:true});
+                
             }catch(err){
-                console.log('Something went wrong!!!');
+                console.log(err);
             }
         }
 
@@ -34,7 +32,7 @@ export const Flights = () => {
            <div>
             {flight.map((flight, index) => {
                 return(
-                    <form className="MyForm" onSubmit={deleteFlight}>
+                    <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
                         <div key={flight._id} >
                             
                             <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
@@ -43,7 +41,7 @@ export const Flights = () => {
                             <div><strong>Arrival City: </strong>{flight.arrCity}</div>
                             <div><strong>Arrival Time: </strong>{flight.arrTime}<strong> Arrival Date: </strong>{flight.arrDate}</div>
                             <div><strong>Number of Passengers: </strong>{flight.currPass}</div>
-                            <div><strong>Maximum Number of Passngers: </strong>{flight.maxPass}</div>
+                            <div><strong>Maximum Number of Passengers: </strong>{flight.maxPass}</div>
                             <input type="submit" value="Delete Flight" />
                         </div>
                     </form>
