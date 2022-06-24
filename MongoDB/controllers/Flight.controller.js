@@ -54,7 +54,6 @@ const findAllFlights = async (limit=0) => {
     const flights = await Flight.find(); // GET all flights
     return flights;
 }
-
 const deleteFlight = async id => {
     const flights = await Flight.deleteOne({_id:id});
     return flights;

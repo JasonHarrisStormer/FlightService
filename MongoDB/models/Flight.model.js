@@ -11,13 +11,8 @@ const starFlight = {
     arrCity: "New York City",
     arrTime: 1300,
     arrDate: 07/08/2022,
-    maxPass: 500,
-    currPass: [{ 
-        firstName: "John",
-        lastName: "Cena",
-        passId: 'JOHNCENA'
-    }],
-    atLimit: "boolean" // {this: currPass.length() > passCap}
+    maxPass: 10,
+    currPass: 0
 };
 
 // Create the Flight schema
@@ -39,16 +34,12 @@ const flightSchema = new Schema({
     },
     arrTime: Number,
     arrDate: String,
-    maxPass: {  // setting passenger limits
+    maxPass: Number,
+    currPass: {
         type: Number,
-        // Tuple with first element being the min value, second being the error message
         min: [0, 'Flight cannot have a less than 0 passengers, how do you make a -1 person?'],
         max: [10, 'Flight cannot have a more than 10 passengers, there are not enough seats!']
-        // By default, these fields are NOT required
-    },
-    currPass: {
-        type: Number
-    },
+    }
 });
 
 //                        Model Name | Schema Object | Collection Name in Atlas

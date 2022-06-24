@@ -27,14 +27,14 @@ router.get('/:id', async (req, res) => {
     
 });
 
-// router.put('/:id', async (req, res) => {
-//     try{
-//         const flightId = await updateFlight(req.body);
-//         res.status(201).json({_id: flightId});
-//     }catch (err){
-//         res.status(err?.status || 500).json(err);
-//     }
-// })
+router.put('/:id', async (req, res) => {
+    try{
+        const flightId = await updateFlight(req.body);
+        res.status(201).json({_id: flightId});
+    }catch (err){
+        res.status(err?.status || 500).json(err);
+    }
+})
 
 router.delete('/:id', async(req, res) => {
     try{
