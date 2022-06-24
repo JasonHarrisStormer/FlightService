@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { AppNav } from './components/Nav';
 import { Center } from './components/Formatting';
-import { Landing, Flights, EditFlight, Error, CreateFlight, SearchFlights } from './pages';
+import { Landing, Flights, EditFlight, Error, CreateFlight, SearchFlights, SearchResults } from './pages';
 import logo from './Fly.jpg';
 
 
@@ -24,6 +24,7 @@ const App = () =>{
                     <Route path="/flights" element={<Flights />} />
                     <Route path="/createflight" element={<CreateFlight />} />
                     <Route path="/searchflight" element={<SearchFlights />} />
+                    <Route path='/searchresults' element={<SearchResults />} />
                     <Route path="/editflight" element={<EditFlight />} />
                     <Route path="*" element={<Error />} />
             </Routes>

@@ -15,6 +15,7 @@ export const CreateFlight = () => {
     const arrCityRef = useRef();
     const arrTimeRef = useRef();
     const arrDateRef = useRef();
+    const currPassRef = useRef();
     const navigate = useNavigate();
     
 
@@ -24,7 +25,7 @@ export const CreateFlight = () => {
         try{
             await axios.post('http://localhost:8086/flight', 
                         {flightNumber : flightIdRef.current.value, depCity : depCityRef.current.value, depTime : depTimeRef.current.value, depDate : depDateRef.current.value, arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, 
-                            arrDate : arrDateRef.current.value, maxPass : maxPassRef.current.value});
+                            arrDate : arrDateRef.current.value, maxPass : maxPassRef.current.value, currPass : currPassRef.current.value});
                             navigate('../flights', {replace: true});
         }catch(error){
             if (error.message.indexOf("0") !=-1)
@@ -39,13 +40,14 @@ export const CreateFlight = () => {
             }
         }finally{
                 flightIdRef.current.value=null; // clearing out text boxes on button click
-                maxPassRef.current.value=null;
                 depCityRef.current.value=null;
                 depDateRef.current.value=null;
                 depTimeRef.current.value=null;
                 arrCityRef.current.value=null;
                 arrDateRef.current.value=null;
                 arrTimeRef.current.value=null;
+                currPassRef.current.value=null;
+                maxPassRef.current.value=null;
         }
 
         
@@ -56,9 +58,6 @@ export const CreateFlight = () => {
                 
                 <label htmlFor="flight">Flight ID Number: </label>
                 <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
-                
-                <label htmlFor="maxPass" >Maximum Passengers: </label>
-                <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
                 
                 <label htmlFor="depCity">Departure City: </label>
                 <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
@@ -77,6 +76,12 @@ export const CreateFlight = () => {
                 
                 <label htmlFor="arrDate">Arrival Date: </label>
                 <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
+
+                <label htmlFor="maxPass" >Maximum Passengers: </label>
+                <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
+                
+                <label htmlFor="currPass" >Passengers: </label>
+                <div><input id="currPass" placeholder="Current Number of Passengers" ref={currPassRef}/></div>
                 
                 <input type="submit" value="Create Flight" />
                 
