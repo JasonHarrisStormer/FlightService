@@ -14,9 +14,9 @@ export const Flights = () => {
         .then(res => setFlights(res.data));
     });
 
-    const deleteFlight = async (flightId) => {
+    const deleteFlight = async (flightId) => { // deleting the flight on submit
             try{
-                console.log('Your Problem is not in Flights.jsx')
+                
                 await axios.delete(`http://localhost:8086/flight/${flightId}`);
                 navigate('./', {replace:true});
                 
@@ -28,11 +28,12 @@ export const Flights = () => {
     return(
         <Center>
             <div class="container">
+            
             {/* Transforming the flights araay into an array of JSX elements for display and formatting */}
             {flight.map((flight, index) => {
                 return(
                     <form class="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
-                        <div key={flight._id} >
+                        <div key={flight._id}> {/* creating the display for multiple flights in a flex grid with backgrounds and boarders */ }
                             
                             <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
                             <div><strong>Departure City: </strong>{flight.depCity}</div>
@@ -48,7 +49,8 @@ export const Flights = () => {
                     </form>
                 )
             })}
-           </div>
+            
+            </div>
         </Center>
     );
 }

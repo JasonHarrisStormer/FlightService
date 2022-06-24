@@ -3,7 +3,7 @@ import { NavItem } from './NavItem';
 import { NavLink } from './NavLink';
 import { Nav } from './Nav';
 
-// This is an opinionated NavBar
+// This is an opinionated NavBar that I am using to navigate the website
 export const AppNav = () => {
 
     return (

@@ -7,7 +7,7 @@ export const NavLink = styled(Link)`
     text-decoration: none;
     transition: color 0.25s;
 
-    /* Applies hover effect to the css class we're making currently */
+    /* Applies hover effect to the css class for the links*/
     &:hover {
         color: ${({transitionColor}) => transitionColor ?? 'red'};
     }

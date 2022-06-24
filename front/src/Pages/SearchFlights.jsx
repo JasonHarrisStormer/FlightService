@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { Center } from "../components/Formatting/StyledComponents";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+
 
 export const SearchFlights = () => {
 
@@ -13,18 +14,17 @@ export const SearchFlights = () => {
     const arrTimeRef = useRef();
     const arrDateRef = useRef();
     const currPassRef = useRef();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // prevents page refresh on submit
         
         try{
-            await axios.post('http://localhost:8086/searchflights', 
-                        {flightNumber : flightIdRef.current.value, depCity : depCityRef.current.value, depTime : depTimeRef.current.value, depDate : depDateRef.current.value, 
-                            arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, arrDate : arrDateRef.current.value, currPass: currPassRef.current.value});
-            navigate('../searchresults', {replace:true});
+            const res = await axios.get('http://localhost:8086/searchresults', 
+                        {params:{flightNumber : flightIdRef.current.value}});
+            console.log(res);
         }catch(err){
-            console.log('Something went wrong!!!');
+            console.log('Something went wrong!!!' + err);
         }finally{
             flightIdRef.current.value=null; // clearing out text boxes on button click
             depCityRef.current.value=null;
