@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "start": "react-scripts start",
-    "dev": "concurrently \"cd ./MongoDB && npm start\" \"cd ./front && npm start\""
+    "start":  "concurrently \"cd ./MongoDB && npm start\" \"cd ./front && npm start\""
   },
 
   "dependencies": {

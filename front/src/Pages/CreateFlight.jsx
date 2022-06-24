@@ -48,46 +48,47 @@ export const CreateFlight = () => {
                 arrTimeRef.current.value=null;
                 curPassRef.current.value=null;
                 maxPassRef.current.value=null;
-        }
-
-        
+        }    
     }
     return (
         <Center>
             <form onSubmit={handleSubmit}>
-                
-                <label htmlFor="flight">Flight ID Number: </label>
-                <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
-                
-                <label htmlFor="depCity">Departure City: </label>
-                <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
-                
-                <label htmlFor="depTime">Departure Time: </label>
-                <div><input id="depTime" placeholder="Enter Departure Time" ref={depTimeRef}/></div>
-                
-                <label htmlFor="depDate">Departure Date: </label>
-                <div><input id="depDate" placeholder="Enter Departure Date" ref={depDateRef}/></div>
-                
-                <label htmlFor="arrCity">Arrival City: </label>
-                <div><input id="arrCity" placeholder="Enter Arrival City" ref={arrCityRef}/></div>
-                
-                <label htmlFor="arrTime">Arrival Time: </label>
-                <div><input id="arrTime" placeholder="Enter Arrival Time" ref={arrTimeRef}/></div>
-                
-                <label htmlFor="arrDate">Arrival Date: </label>
-                <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
+                <div class="container">
+                    <div>
+                        <label htmlFor="flight">Flight ID Number: </label>
+                        <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
+                        
+                        <label htmlFor="depCity">Departure City: </label>
+                        <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
+                        
+                        <label htmlFor="depTime">Departure Time: </label>
+                        <div><input id="depTime" placeholder="Enter Departure Time" ref={depTimeRef}/></div>
+                        
+                        <label htmlFor="depDate">Departure Date: </label>
+                        <div><input id="depDate" placeholder="Enter Departure Date" ref={depDateRef}/></div>
+                    </div>
+                    <div>
+                        <label htmlFor="arrCity">Arrival City: </label>
+                        <div><input id="arrCity" placeholder="Enter Arrival City" ref={arrCityRef}/></div>
+                        
+                        <label htmlFor="arrTime">Arrival Time: </label>
+                        <div><input id="arrTime" placeholder="Enter Arrival Time" ref={arrTimeRef}/></div>
+                        
+                        <label htmlFor="arrDate">Arrival Date: </label>
+                        <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
 
-                <label htmlFor="maxPass" >Maximum Passengers: </label>
-                <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
-                
-                <label htmlFor="currPass" >Passengers: </label>
-                <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
-                
-                <input type="submit" value="Create Flight" />
-                
-            </form>
-        
+                        <label htmlFor="maxPass" >Maximum Passengers: </label>
+                        <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <label htmlFor="currPass" >Passengers: </label>
+                    <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
+                </div>
+                <div class="container">
+                    <input type="submit" value="Create Flight" />
+                </div>
+            </form>    
         </Center>
-
     );
 }
