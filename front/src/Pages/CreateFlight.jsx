@@ -15,7 +15,7 @@ export const CreateFlight = () => {
     const arrCityRef = useRef();
     const arrTimeRef = useRef();
     const arrDateRef = useRef();
-    const currPassRef = useRef();
+    const curPassRef = useRef();
     const navigate = useNavigate();
     
 
@@ -25,7 +25,7 @@ export const CreateFlight = () => {
         try{
             await axios.post('http://localhost:8086/flight', 
                         {flightNumber : flightIdRef.current.value, depCity : depCityRef.current.value, depTime : depTimeRef.current.value, depDate : depDateRef.current.value, arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, 
-                            arrDate : arrDateRef.current.value, maxPass : maxPassRef.current.value, currPass : currPassRef.current.value});
+                            arrDate : arrDateRef.current.value, maxPass : maxPassRef.current.value, curPass : curPassRef.current.value});
                             navigate('../flights', {replace: true});
         }catch(error){
             if (error.message.indexOf("0") !=-1)
@@ -46,7 +46,7 @@ export const CreateFlight = () => {
                 arrCityRef.current.value=null;
                 arrDateRef.current.value=null;
                 arrTimeRef.current.value=null;
-                currPassRef.current.value=null;
+                curPassRef.current.value=null;
                 maxPassRef.current.value=null;
         }
 
@@ -81,7 +81,7 @@ export const CreateFlight = () => {
                 <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
                 
                 <label htmlFor="currPass" >Passengers: </label>
-                <div><input id="currPass" placeholder="Current Number of Passengers" ref={currPassRef}/></div>
+                <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
                 
                 <input type="submit" value="Create Flight" />
                 

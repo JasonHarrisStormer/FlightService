@@ -35,11 +35,7 @@ const flightSchema = new Schema({
     arrTime: Number,
     arrDate: String,
     maxPass: Number,
-    currPass: {
-        type: Number,
-        min: [0, 'Flight cannot have a less than 0 passengers, how do you make a -1 person?'],
-        max: [10, 'Flight cannot have a more than 10 passengers, there are not enough seats!']
-    }
+    curPass: Number
 });
 
 //                        Model Name | Schema Object | Collection Name in Atlas

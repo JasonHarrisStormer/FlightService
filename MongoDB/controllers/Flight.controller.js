@@ -1,6 +1,6 @@
 const Flight = require('../models/Flight.model');
 
-const createFlight = async ({flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, curPass, maxPass}) => {
+const createFlight = async ({flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, maxPass, curPass}) => {
     try {
         const flight = new Flight({
             flightNumber,
@@ -9,9 +9,10 @@ const createFlight = async ({flightNumber, depCity, depTime, depDate, arrCity, a
             depDate, 
             arrCity, 
             arrTime, 
-            arrDate,  
-            curPass, 
-            maxPass
+            arrDate,
+            maxPass,  
+            curPass 
+            
         }); // This alone does not save to the database, this just simply prepares for the database
         await flight.save(); // Saves the newly created movie to the database
 
@@ -23,9 +24,9 @@ const createFlight = async ({flightNumber, depCity, depTime, depDate, arrCity, a
         throw { status: 400, message: err };
     }
 }
-const updateFlight = async (id, {flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, curPass, maxPass}) =>{
+const updateFlight = async (id, {flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, maxPass, curPass}) =>{
     try{
-        await flight.updateFlight(_id, {$push: { flight: {flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, curPass, maxPass}}});
+        await flight.updateFlight(_id, {$push: { flight: {flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, maxPass, curPass}}});
         if (flight == null){ // if no flight found, advise to create one
             throw `The flight id ${ id } does not exist, please create it first!`
         }

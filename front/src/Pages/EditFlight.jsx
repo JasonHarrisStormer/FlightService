@@ -17,7 +17,7 @@ export const EditFlight = () => {
     const arrCityRef = useRef();
     const arrTimeRef = useRef();
     const arrDateRef = useRef();
-    const currPassRef = useRef();
+    const curPassRef = useRef();
     const navigate = useNavigate();
     
 
@@ -25,18 +25,19 @@ export const EditFlight = () => {
         try{
             await axios.post('http://localhost:8086/flight', 
                         {flightNumber : flightIdRef.current.value, depCity : depCityRef.current.value, depTime : depTimeRef.current.value, depDate : depDateRef.current.value, 
-                            arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, arrDate : arrDateRef.current.value, currPass: currPassRef.current.value});
+                            arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, arrDate : arrDateRef.current.value, curPass: curPassRef.current.value});
                             navigate('../flights', {replace: true});
         }catch(err){
             console.log('Something went wrong!!!');
         }finally{
-            flightIdRef.current.value=null; // clearing out text boxes on button click
+            flightIdRef.current.value=null; // clearing out text boxes on submitt
             depCityRef.current.value=null;
             depDateRef.current.value=null;
             depTimeRef.current.value=null;
             arrCityRef.current.value=null;
             arrDateRef.current.value=null;
             arrTimeRef.current.value=null;
+            curPassRef.current.value=null;
         }
 
         
@@ -70,8 +71,8 @@ export const EditFlight = () => {
                         <label htmlFor="arrDate">Arrival Date: </label>
                         <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
 
-                        <label htmlFor="currPass" >Passengers: </label>
-                        <div><input id="currPass" placeholder="Current Number of Passengers" ref={currPassRef}/></div>
+                        <label htmlFor="curPass" >Passengers: </label>
+                        <div><input id="curPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
                         
                             <input type="submit" value="Edit Flight" />
                         </div>

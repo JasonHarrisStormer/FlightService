@@ -41,7 +41,7 @@ export const SearchResults= () => {
                             <div><strong>Arrival City: </strong>{flight.arrCity}</div>
                             <div><strong>Arrival Time: </strong>{flight.arrTime}</div>
                             <div><strong>Arrival Date: </strong>{flight.arrDate}</div>
-                            <div><strong>Passengers: </strong>{flight.currPass}</div>
+                            <div><strong>Passengers: </strong>{flight.curPass}</div>
                             <div><strong>Max Seats: </strong>{flight.maxPass}</div>
                             <input type="submit" value="Delete Flight" />
                         </div>

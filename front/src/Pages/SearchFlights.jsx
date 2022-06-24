@@ -13,7 +13,7 @@ export const SearchFlights = () => {
     const arrCityRef = useRef();
     const arrTimeRef = useRef();
     const arrDateRef = useRef();
-    const currPassRef = useRef();
+    const curPassRef = useRef();
     // const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
@@ -33,6 +33,7 @@ export const SearchFlights = () => {
             arrCityRef.current.value=null;
             arrDateRef.current.value=null;
             arrTimeRef.current.value=null;
+            curPassRef.current.value=null;
         }
     }
     return (
@@ -59,8 +60,8 @@ export const SearchFlights = () => {
                 <label htmlFor="arrDate">Arrival Date: </label>
                 <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
 
-                <label htmlFor="currPass">Passengers: </label>
-                <div><input id="currPass" placeholder="Current Number of Passengers" ref={currPassRef}/></div>
+                <label htmlFor="curPass">Passengers: </label>
+                <div><input id="curPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
                 
                 <div><button onClick={handleSubmit}>Search Flights</button></div>
             </form>
