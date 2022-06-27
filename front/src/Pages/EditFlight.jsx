@@ -1,13 +1,13 @@
 import { Center } from "../components/Formatting/StyledComponents";
 import {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const EditFlight = () => {
-    const [setFlights] = useState([]);
+    const [flight, setFlights] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:8086/flights')
+        axios.get('http://localhost:8086/flight')
         .then(res => setFlights(res.data));
     });
     const flightIdRef = useRef();
@@ -19,13 +19,25 @@ export const EditFlight = () => {
     const arrDateRef = useRef();
     const curPassRef = useRef();
     const maxPassRef = useRef();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
+    
+
+    const deleteFlight = async (flightId) => { // deleting the flight on submit
+        try{
+            await axios.delete(`http://localhost:8086/flight/${flightId}`);
+            navigate('./', {replace:true});
+            
+        }catch(err){
+            setFlights();
+            console.log(err);
+        }
+    }
 
     const editFlight = async (params) => {
-        if(curPassRef.current.value <= maxPassRef.current.value){
+        
             try{
-                const res = await axios.get('http://localhost:8086/flights', 
-                            {params:{flightNumber : flightIdRef.current.value,
+                const res = await axios.put('http://localhost:8086/flight', 
+                            {flightNumber : flightIdRef.current.value,
                                 depCity : depCityRef.current.value,
                                 depDate : depDateRef.current.value,
                                 depTime : depTimeRef.current.value,
@@ -33,9 +45,11 @@ export const EditFlight = () => {
                                 arrDate : arrDateRef.current.value,
                                 arrTime : arrTimeRef.current.value,
                                 curPass : curPassRef.current.value,
-                                maxPass : maxPassRef.current.value}});
-                console.log(res);
+                                maxPass : maxPassRef.current.value});
+                console.log(res.data);
+                setFlights(res.data);
             }catch(err){
+                setFlights();
                 console.log('Something went wrong!!!' + err);
             }finally{
                 flightIdRef.current.value=null; // clearing out text boxes on button click
@@ -48,13 +62,9 @@ export const EditFlight = () => {
                 curPassRef.current.value=null;
                 maxPassRef.current.value=null;
             }
-        }else{
-            const prevCurPass = axios.get('http://localhost:8086/flights', {params:{flightIdRef}});
-
-            alert(`Maximum Capacity is ${maxPassRef.current.value}, current passenger capacity is ${prevCurPass.curPass} and cannot accommodate ${curPassRef.current.value} more passengers!`)
-        }
     }
     return(
+        <>
         <Center>
             {/* Transforming the flight array into an array of JSX elements for display and formatting */}
            <div>
@@ -105,11 +115,32 @@ export const EditFlight = () => {
                     <label htmlFor="currPass" >Passengers: </label>
                     <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
                 </div>
-                    <div class="container">
+                    <div className="container">
                         <input type="submit" value="Edit Flight" />
                     </div>
                 </form>
            </div>
         </Center>
+        <Center>
+            <div class="container">
+                {/* Transforming the flights araay into an array of JSX elements for display and formatting */}
+                    {flight && <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
+                        <div key={flight._id}> {/* creating the display for multiple flights in a flex grid with backgrounds and boarders */ }
+                            
+                            <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
+                            <div><strong>Departure City: </strong>{flight.depCity}</div>
+                            <div><strong>Departure Time: </strong>{flight.depTime}</div>
+                            <div><strong>Departure Date: </strong>{flight.depDate}</div>
+                            <div><strong>Arrival City: </strong>{flight.arrCity}</div>
+                            <div><strong>Arrival Time: </strong>{flight.arrTime}</div>
+                            <div><strong>Arrival Date: </strong>{flight.arrDate}</div>
+                            <div><strong>Passengers: </strong>{flight.curPass}</div>
+                            <div><strong>Max Seats: </strong>{flight.maxPass}</div>
+                            <input type="submit" value="Delete Flight" />
+                        </div>
+                    </form>}
+            </div>
+        </Center>
+        </>
     );
 }

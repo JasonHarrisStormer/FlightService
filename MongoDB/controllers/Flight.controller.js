@@ -24,13 +24,13 @@ const createFlight = async ({flightNumber, depCity, depTime, depDate, arrCity, a
         throw { status: 400, message: err };
     }
 }
-const updateFlight = async (id, {flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, maxPass, curPass}) =>{
+const updateFlight = async (updatedFlight) =>{
     try{
-        await flight.updateFlight(_id, {$push: { flight: {flightNumber, depCity, depTime, depDate, arrCity, arrTime, arrDate, maxPass, curPass}}});
-        if (flight == null){ // if no flight found, advise to create one
+        const uFlight = await Flight.findOneAndUpdate({flightNumber : updatedFlight.flightNumber}, updatedFlight, {new : true});
+        if (uFlight == null){ // if no flight found, advise to create one
             throw `The flight id ${ id } does not exist, please create it first!`
         }
-        return flight; // return results
+        return uFlight; // return results
     }catch (err){
         console.error(err);
         throw { status: 404, message: err };
@@ -40,7 +40,7 @@ const updateFlight = async (id, {flightNumber, depCity, depTime, depDate, arrCit
 const findFlightById = async id => {
     try {
         // If no flight is found, this does NOT return a rejected promise. Instead null is returned
-        const flight = await Flight.findById(id);
+        const flight = await Flight.findOne({flightNumber:id});
         if (flight == null) {
             throw `No flight with the id of ${id} found.`;
         }

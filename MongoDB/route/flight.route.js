@@ -1,3 +1,4 @@
+
 const router = require('express').Router();
 const { createFlight, findFlightById, findAllFlights, updateFlight, deleteFlight } = require('../controllers/Flight.controller');
 
@@ -27,10 +28,10 @@ router.get('/:id', async (req, res) => {
     
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
     try{
-        const flightId = await updateFlight(req.params.id);
-        res.status(201).json(flight);
+        const updatedFlight = await updateFlight(req.body);
+        res.status(201).json(updatedFlight);
     }catch (err){
         res.status(err?.status || 500).json(err);
     }

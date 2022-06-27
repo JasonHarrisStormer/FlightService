@@ -28,15 +28,17 @@ export const CreateFlight = () => {
                             arrDate : arrDateRef.current.value, maxPass : maxPassRef.current.value, curPass : curPassRef.current.value});
                             navigate('../flights', {replace: true});
         }catch(error){
+            if(error.name === 'ValidationError'){
+                alert("The required inputs have not been entered. Please try again.")
+                console.log(error.response.data.message);
+            }
             if (error.message.indexOf("0") !=-1)
             {
                 alert("This Flight Number has already been used!");
-            }
-            if(error.name === "mongoose:validatorError"){
-                alert("The input required inputs have not been entered. Please try again.")
+                console.log(error.response.data.message);
             }
             else{
-            console.log(error);
+                console.log(error.response.data.message);
             }
         }finally{
                 flightIdRef.current.value=null; // clearing out text boxes on button click
@@ -53,7 +55,7 @@ export const CreateFlight = () => {
     return (
         <Center>
             <form onSubmit={handleSubmit}>
-                <div class="container">
+                <div className="container">
                     <div>
                         <label htmlFor="flight">Flight ID Number: </label>
                         <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
@@ -81,11 +83,11 @@ export const CreateFlight = () => {
                         <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
                     </div>
                 </div>
-                <div class="container">
+                <div className="container">
                     <label htmlFor="currPass" >Passengers: </label>
                     <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
                 </div>
-                <div class="container">
+                <div className="container">
                     <input type="submit" value="Create Flight" />
                 </div>
             </form>    
