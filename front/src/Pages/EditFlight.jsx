@@ -21,16 +21,31 @@ export const EditFlight = () => {
     const maxPassRef = useRef();
     const navigate = useNavigate();
     
+    const allParams = { // creating an object to store all the parameters
+        flightNumber : flightIdRef.current.value,
+        depCity : depCityRef.current.value,
+        depDate : depDateRef.current.value,
+        depTime: depTimeRef.current.value,
+        arrCity: arrCityRef.current.value,
+        arrDate : arrDateRef.current.value,
+        arrTime : arrTimeRef.current.value, 
+        curPass : curPassRef.current.value,
+        maxPass : maxPassRef.current.value
+    };
 
     const editFlight = async (flightId) => {
         try{
-            await axios.put('http://localhost:8086/flights', 
-                        {flightNumber : flightIdRef.current.value, depCity : depCityRef.current.value, depTime : depTimeRef.current.value, depDate : depDateRef.current.value, 
-                            arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, arrDate : arrDateRef.current.value, curPass: curPassRef.current.value});
-                            navigate('../flights', {replace: true});
+            await axios.post('http://localhost:8086/flights', {allParams})
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            });
+            navigate('../flights', {replace: true});
+            
         }catch(err){
             console.log('Something went wrong!!!');
         }finally{
+
             flightIdRef.current.value=null; // clearing out text boxes on submitt
             depCityRef.current.value=null;
             depDateRef.current.value=null;
@@ -40,6 +55,7 @@ export const EditFlight = () => {
             arrTimeRef.current.value=null;
             curPassRef.current.value=null;
             maxPassRef.current.value=null;
+
         }
 
         

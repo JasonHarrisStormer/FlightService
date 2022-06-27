@@ -35,7 +35,7 @@ export const SearchFlights = () => {
         try{
             
             const res = await axios.get('http://localhost:8086/flights', 
-                        {params: axios.pick(allParams, (key, value) => {return !!value; }) });
+                        {params: _.pick(allParams, (key, value) => {return !!value; }) });
             console.log(res);
         }catch(err){
             console.log('Something went wrong!!!' + err);
@@ -53,7 +53,7 @@ export const SearchFlights = () => {
     }
     return (
         <Center>
-            <form onSubmit= {(event) => { event.preventDefault(); searchFlight(flightIdRef)}}>
+            <form onSubmit= {(event) => { event.preventDefault(); this.searchFlight(flightIdRef)}}>
             <div class="container">
                     <div>
                         <label htmlFor="flight">Flight ID Number: </label>
