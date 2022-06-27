@@ -17,47 +17,56 @@ export const SearchFlights = () => {
     const maxPassRef = useRef();
     // const navigate = useNavigate();
 
-    const allParams = { // creating an object to store all the parameters
-        flightNumber : flightIdRef.current.value,
-        depCity : depCityRef.current.value,
-        depDate : depDateRef.current.value,
-        depTime: depTimeRef.current.value,
-        arrCity: arrCityRef.current.value,
-        arrDate : arrDateRef.current.value,
-        arrTime : arrTimeRef.current.value, 
-        curPass : curPassRef.current.value,
-        maxPass : maxPassRef.current.value
-    };
+    
 
-    const searchFlight = async (allParams, event) => {
-        
-        
-        try{
-            
-            const res = await axios.get('http://localhost:8086/flights', 
-                        {params: _.pick(allParams, (key, value) => {return !!value; }) });
-            console.log(res);
-        }catch(err){
-            console.log('Something went wrong!!!' + err);
-        }finally{
-            flightIdRef.current.value=null; // clearing out text boxes on button click
-            depCityRef.current.value=null;
-            depDateRef.current.value=null;
-            depTimeRef.current.value=null;
-            arrCityRef.current.value=null;
-            arrDateRef.current.value=null;
-            arrTimeRef.current.value=null;
-            curPassRef.current.value=null;
-            maxPassRef.current.value=null;
-        }
+    const searchFlights = async (params) => {
+
+            try{
+                const res = await axios.get('http://localhost:8086/flights', 
+                            {params:{flightNumber : flightIdRef.current.value,
+                                depCity : depCityRef.current.value,
+                                depDate : depDateRef.current.value,
+                                depTime : depTimeRef.current.value,
+                                arrCity : arrCityRef.current.value,
+                                arrDate : arrDateRef.current.value,
+                                arrTime : arrTimeRef.current.value,
+                                curPass : curPassRef.current.value,
+                                maxPass : maxPassRef.current.value}});
+                console.log(res);
+            }catch(err){
+                console.log('Something went wrong!!!' + err);
+            }finally{
+                flightIdRef.current.value=null; // clearing out text boxes on button click
+                depCityRef.current.value=null;
+                depDateRef.current.value=null;
+                depTimeRef.current.value=null;
+                arrCityRef.current.value=null;
+                arrDateRef.current.value=null;
+                arrTimeRef.current.value=null;
+                curPassRef.current.value=null;
+                maxPassRef.current.value=null;
+            }
     }
     return (
         <Center>
-            <form onSubmit= {(event) => { event.preventDefault(); this.searchFlight(flightIdRef)}}>
-            <div class="container">
+            <form onSubmit= {(event) => { event.preventDefault(); searchFlights({
+                    flightNumber : flightIdRef.current.value,
+                    depCity : depCityRef.current.value,
+                    depDate : depDateRef.current.value,
+                    depTime : depTimeRef.current.value,
+                    arrCity : arrCityRef.current.value,
+                    arrDate : arrDateRef.current.value,
+                    arrTime : arrTimeRef.current.value,
+                    curPass : curPassRef.current.value,
+                    maxPass : maxPassRef.current.value})}}>
+                <div className="container">
                     <div>
                         <label htmlFor="flight">Flight ID Number: </label>
                         <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
+                    </div><p></p>
+                </div>
+                <div className="container">
+                    <div>
                         
                         <label htmlFor="depCity">Departure City: </label>
                         <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
@@ -77,16 +86,17 @@ export const SearchFlights = () => {
                         
                         <label htmlFor="arrDate">Arrival Date: </label>
                         <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
-
-                        <label htmlFor="maxPass" >Maximum Passengers: </label>
-                        <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
                     </div>
                 </div>
-                <div class="container">
+                <div className="container">
+                    <label htmlFor="maxPass" >Maximum Passengers: </label>
+                    <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
+                </div>
+                <div className="container">
                     <label htmlFor="currPass" >Passengers: </label>
                     <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
                 </div>
-                <div class="container">
+                <div className="container">
                     <input type="submit" value="Search Flight" />
                 </div>
             </form>
