@@ -17,12 +17,25 @@ export const SearchFlights = () => {
     const maxPassRef = useRef();
     // const navigate = useNavigate();
 
-    const searchFlight = async (flightIdRef, event) => {
-        event.preventDefault(); // prevents page refresh on submit
+    const allParams = { // creating an object to store all the parameters
+        flightNumber : flightIdRef.current.value,
+        depCity : depCityRef.current.value,
+        depDate : depDateRef.current.value,
+        depTime: depTimeRef.current.value,
+        arrCity: arrCityRef.current.value,
+        arrDate : arrDateRef.current.value,
+        arrTime : arrTimeRef.current.value, 
+        curPass : curPassRef.current.value,
+        maxPass : maxPassRef.current.value
+    };
+
+    const searchFlight = async (allParams, event) => {
+        
         
         try{
-            const res = await axios.get('http://localhost:8086/searchresults', 
-                        {params:{flightNumber : flightIdRef.current.value}});
+            
+            const res = await axios.get('http://localhost:8086/flights', 
+                        {params: axios.pick(allParams, (key, value) => {return !!value; }) });
             console.log(res);
         }catch(err){
             console.log('Something went wrong!!!' + err);

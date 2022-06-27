@@ -24,7 +24,7 @@ export const EditFlight = () => {
 
     const editFlight = async (flightId) => {
         try{
-            await axios.post('http://localhost:8086/flight', 
+            await axios.put('http://localhost:8086/flights', 
                         {flightNumber : flightIdRef.current.value, depCity : depCityRef.current.value, depTime : depTimeRef.current.value, depDate : depDateRef.current.value, 
                             arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, arrDate : arrDateRef.current.value, curPass: curPassRef.current.value});
                             navigate('../flights', {replace: true});
