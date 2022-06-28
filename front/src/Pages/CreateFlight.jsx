@@ -22,25 +22,30 @@ export const CreateFlight = () => {
     const handleSubmit = async (event) => {
         event.preventDefault(); // prevents page refresh on submit
         
-        try{
+        try
+        {
             await axios.post('http://localhost:8086/flight', 
                         {flightNumber : flightIdRef.current.value, depCity : depCityRef.current.value, depTime : depTimeRef.current.value, depDate : depDateRef.current.value, arrCity : arrCityRef.current.value, arrTime : arrTimeRef.current.value, 
                             arrDate : arrDateRef.current.value, maxPass : maxPassRef.current.value, curPass : curPassRef.current.value});
                             navigate('../flights', {replace: true});
-        }catch(error){
-            if(error.name === 'ValidationError'){
-                alert("The required inputs have not been entered. Please try again.")
-                console.log(error.response.data.message);
-            }
-            if (error.message.indexOf("0") !=-1)
+        }
+        catch(error)
+        {
+            // if(error.name === 'ValidationError'){
+            //     alert("The required inputs have not been entered. Please try again.")
+            //     console.log(error.response.data.message);
+            // }
+            if (error.message.indexOf("0") !==1)
             {
-                alert("This Flight Number has already been used!");
+                alert("The required inputs have not been entered, \nor that flight number is already in use. \n Check your inputs, and please try again.");
                 console.log(error.response.data.message);
             }
             else{
                 console.log(error.response.data.message);
             }
-        }finally{
+        }
+        finally
+        {
                 flightIdRef.current.value=null; // clearing out text boxes on button click
                 depCityRef.current.value=null;
                 depDateRef.current.value=null;
@@ -55,10 +60,14 @@ export const CreateFlight = () => {
     return (
         <Center>
             <form onSubmit={handleSubmit}>
-                <div className="container">
+            <div className="container">
                     <div>
                         <label htmlFor="flight">Flight ID Number: </label>
                         <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
+                    </div><p></p>
+                </div>
+                <div className="container">
+                    <div>
                         
                         <label htmlFor="depCity">Departure City: </label>
                         <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
@@ -78,16 +87,17 @@ export const CreateFlight = () => {
                         
                         <label htmlFor="arrDate">Arrival Date: </label>
                         <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
-
-                        <label htmlFor="maxPass" >Maximum Passengers: </label>
-                        <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
                     </div>
+                </div>
+                <div className="container">
+                    <label htmlFor="maxPass" >Maximum Passengers: </label>
+                    <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
                 </div>
                 <div className="container">
                     <label htmlFor="currPass" >Passengers: </label>
                     <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
                 </div>
-                <div className="container">
+                    <div className="container">
                     <input type="submit" value="Create Flight" />
                 </div>
             </form>    

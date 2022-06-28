@@ -4,4 +4,3 @@ export * from './Landing';
 export * from './EditFlight';
 export * from './CreateFlight';
 export * from './SearchFlights';
-export * from './SearchResults';

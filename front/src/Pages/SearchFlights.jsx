@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Center } from "../components/Formatting/StyledComponents";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export const SearchFlights = () => {
     const [flight, setFlights] = useState();
     const flightIdRef = useRef();
+    const depCityRef = useRef();
     const navigate = useNavigate();
 
     const deleteFlight = async (flightId) => { // deleting the flight on submit
@@ -22,9 +23,8 @@ export const SearchFlights = () => {
     
     const searchFlights = async (params) => {
             
-            
             try{
-                const res = await axios.get(`http://localhost:8086/flight/${flightIdRef.current.value}`)
+                const res = await axios.get(`http://localhost:8086/flight/${flightIdRef.current.value && {depCity : depCityRef.current.value}}`)
                 setFlights(res.data);
                 console.log(res.data);
             }catch(err){
@@ -43,6 +43,8 @@ export const SearchFlights = () => {
                     <div>
                         <label htmlFor="flight">Flight ID Number: </label>
                         <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
+                        <label htmlFor="depCity">Departure City: </label>
+                        <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
                     </div><p></p>
                 </div>
                 

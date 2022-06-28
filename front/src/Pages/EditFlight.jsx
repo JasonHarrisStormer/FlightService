@@ -22,22 +22,23 @@ export const EditFlight = () => {
     const navigate = useNavigate();
     
 
-    const deleteFlight = async (flightId) => { // deleting the flight on submit
-        try{
-            await axios.delete(`http://localhost:8086/flight/${flightId}`);
-            navigate('./', {replace:true});
+    // const deleteFlight = async (flightId) => { // deleting the flight on submit of the delete flight button inside the flight display
+    //     try{
+    //         await axios.delete(`http://localhost:8086/flight/${flightId}`);
+    //         navigate('./', {replace:true});
             
-        }catch(err){
-            setFlights();
-            console.log(err);
-        }
-    }
+    //     }catch(err){
+    //         setFlights();
+    //         console.log(err);
+    //     }
+    // }
 
     const editFlight = async (params) => {
         
             try{
-                const res = await axios.put('http://localhost:8086/flight', 
-                            {flightNumber : flightIdRef.current.value,
+                const res = await axios.put('http://localhost:8086/flight', // putting the information and editing the searched for element
+                            {
+                                flightNumber : flightIdRef.current.value,
                                 depCity : depCityRef.current.value,
                                 depDate : depDateRef.current.value,
                                 depTime : depTimeRef.current.value,
@@ -45,13 +46,38 @@ export const EditFlight = () => {
                                 arrDate : arrDateRef.current.value,
                                 arrTime : arrTimeRef.current.value,
                                 curPass : curPassRef.current.value,
-                                maxPass : maxPassRef.current.value});
+                                maxPass : maxPassRef.current.value
+                            });
                 console.log(res.data);
                 setFlights(res.data);
-            }catch(err){
-                setFlights();
-                console.log('Something went wrong!!!' + err);
-            }finally{
+            }
+            
+            catch(err) // catching the errors, and redirecting as needed
+            {
+                if(err.response.status === 404){
+                    // alert("Flight not in database, please create flight.");
+                    
+                    if (window.confirm("Flight not in database! \nWould you like to go create it now?")) { // if they want to create a flight, send them to the create page
+                        window.open("../createflight","You pressed OK!");
+                        navigate('../createflight', {replace : true});
+                      } else { // if they do not want to create a flight, refresh this page and log the error
+                        console.log(err.response.data.message);
+                        console.log(err.response.status);
+                        console.log(err.response.headers);
+                        //setFlights();
+                        navigate('./', {replace : true});
+                      }
+                    
+                }else{ // catch any other errors in this request
+                    console.log(err.response.data.message);
+                    console.log(err.response.status);
+                    console.log(err.response.headers);
+                    //setFlights();
+                }
+
+            }
+            
+            finally{
                 flightIdRef.current.value=null; // clearing out text boxes on button click
                 depCityRef.current.value=null;
                 depDateRef.current.value=null;
@@ -68,16 +94,20 @@ export const EditFlight = () => {
         <Center>
             {/* Transforming the flight array into an array of JSX elements for display and formatting */}
            <div>
-                <form onSubmit= {(event) => { event.preventDefault(); editFlight({
-                    flightNumber : flightIdRef.current.value,
-                    depCity : depCityRef.current.value,
-                    depDate : depDateRef.current.value,
-                    depTime : depTimeRef.current.value,
-                    arrCity : arrCityRef.current.value,
-                    arrDate : arrDateRef.current.value,
-                    arrTime : arrTimeRef.current.value,
-                    curPass : curPassRef.current.value,
-                    maxPass : maxPassRef.current.value})}}>
+                <form onSubmit= {(event) => { 
+                    event.preventDefault(); // prevent the page from reloading
+                    editFlight // edit the flight object with the information entered
+                    ({
+                        flightNumber : flightIdRef.current.value,
+                        depCity : depCityRef.current.value,
+                        depDate : depDateRef.current.value,
+                        depTime : depTimeRef.current.value,
+                        arrCity : arrCityRef.current.value,
+                        arrDate : arrDateRef.current.value,
+                        arrTime : arrTimeRef.current.value,
+                        curPass : curPassRef.current.value,
+                        maxPass : maxPassRef.current.value
+                    })}}>
                     <div className="container">
                     <div>
                         <label htmlFor="flight">Flight ID Number: </label>
@@ -121,11 +151,10 @@ export const EditFlight = () => {
                 </form>
            </div>
         </Center>
-        <Center>
+        {/* <Center>
             <div class="container">
-                {/* Transforming the flights araay into an array of JSX elements for display and formatting */}
-                    {flight && <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
-                        <div key={flight._id}> {/* creating the display for multiple flights in a flex grid with backgrounds and boarders */ }
+                    {flight && <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id) }}>
+                        <div key={flight._id}> {/* creating the display for multiple flights in a flex grid with backgrounds and boarders }
                             
                             <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
                             <div><strong>Departure City: </strong>{flight.depCity}</div>
@@ -140,7 +169,7 @@ export const EditFlight = () => {
                         </div>
                     </form>}
             </div>
-        </Center>
+        </Center> */}
         </>
     );
 }
