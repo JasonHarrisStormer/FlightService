@@ -20,88 +20,94 @@ export const EditFlight = () => {
     const curPassRef = useRef();
     const maxPassRef = useRef();
     const navigate = useNavigate();
+    const clearForm = () => {
+        flightIdRef.current.value=null; // clearing out text boxes on button click
+                    depCityRef.current.value=null;
+                    depDateRef.current.value=null;
+                    depTimeRef.current.value=null;
+                    arrCityRef.current.value=null;
+                    arrDateRef.current.value=null;
+                    arrTimeRef.current.value=null;
+                    curPassRef.current.value=null;
+                    maxPassRef.current.value=null;
+    };
 
     const editFlight = async (params) => {
         let maxPassNow = maxPassRef.current.value; // making useRef variables into let variables to be used for if checks and declarations
         let curPassNow = curPassRef.current.value;
         const exceedPass = curPassNow - maxPassNow;
+        let flightIdNow = flightIdRef.current.value;
+        let arrCityNow = arrCityRef.current.value;
+        let depCityNow = depCityRef.current.value;
 
         if(exceedPass > 0){
             
             alert(`Maximum capacity is ${maxPassNow}. \nAdding ${curPassNow} will cause the flight to exceed capacity by ${exceedPass}! 
                     \nPlease re-create the flight with an acceptable number of passengers.`)
-            flightIdRef.current.value=null; // clearing out text boxes on button click
-            depCityRef.current.value=null;
-            depDateRef.current.value=null;
-            depTimeRef.current.value=null;
-            arrCityRef.current.value=null;
-            arrDateRef.current.value=null;
-            arrTimeRef.current.value=null;
-            curPassRef.current.value=null;
-            maxPassRef.current.value=null;
+            clearForm(); // clearing out text boxes on button click
+            setFlights();
         }
         else
         {
-            try{
-                const res = await axios.put('http://localhost:8086/flight', // putting the information and editing the searched for element
-                            {
-                                flightNumber : flightIdRef.current.value,
-                                depCity : depCityRef.current.value,
-                                depDate : depDateRef.current.value,
-                                depTime : depTimeRef.current.value,
-                                arrCity : arrCityRef.current.value,
-                                arrDate : arrDateRef.current.value,
-                                arrTime : arrTimeRef.current.value,
-                                curPass : curPassRef.current.value,
-                                maxPass : maxPassRef.current.value
-                            });
-                console.log(res.data);
-                setFlights(res.data);
-                if (window.confirm("Flight edited successfully. \nProceed to the main flight list to view changes?."))
-                {
-                    //window.open('../flights', "You pressed ok!"); // uncomment this line to open in a new window
-                    navigate('../flights', {replace : true}); // opens in existing window
+            if(flightIdNow !== "" && arrCityNow !== "" && depCityNow !== ""){
+                try{
+                    const res = await axios.put('http://localhost:8086/flight', // putting the information and editing the searched for element
+                                {
+                                    flightNumber : flightIdRef.current.value,
+                                    depCity : depCityRef.current.value,
+                                    depDate : depDateRef.current.value,
+                                    depTime : depTimeRef.current.value,
+                                    arrCity : arrCityRef.current.value,
+                                    arrDate : arrDateRef.current.value,
+                                    arrTime : arrTimeRef.current.value,
+                                    curPass : curPassRef.current.value,
+                                    maxPass : maxPassRef.current.value
+                                });
+                    console.log(res.data);
+                    setFlights(res.data);
+                    if (window.confirm("Flight edited successfully. \nProceed to the main flight list to view changes?."))
+                    {
+                        //window.open('../flights', "You pressed ok!"); // uncomment this line to open in a new window
+                        navigate('../flights', {replace : true}); // opens in existing window
+                    }
+                    else
+                    {
+                        setFlights();
+                        navigate('./', {replace : true}); // opens in existing window
+                    };
                 }
-                else
+                
+                catch(err) // catching the errors, and redirecting as needed
                 {
-                    setFlights();
-                    navigate('./', {replace : true}); // opens in existing window
-                };
-            }
-            
-            catch(err) // catching the errors, and redirecting as needed
-            {
-                if(err.response.status === 404){
-                    
-                    if (window.confirm("Flight not in database! \nWould you like to go create it now?")) { // if they want to create a flight, send them to the create page
-                        //window.open("../createflight","You pressed OK!"); // uncomment this if you want it to open in a new window
-                        navigate('../createflight', {replace : true}); // comment this out if you do not want it to open in the existing window
-                      } else { // if they chose not to create a flight, refresh this page and log the error
+                    if(err.response.status === 404){
+                        
+                        if (window.confirm("Flight not in database! \nWould you like to go create it now?")) { // if they want to create a flight, send them to the create page
+                            //window.open("../createflight","You pressed OK!"); // uncomment this if you want it to open in a new window
+                            navigate('../createflight', {replace : true}); // comment this out if you do not want it to open in the existing window
+                        } else { // if they chose not to create a flight, refresh this page and log the error
+                            console.log(err.response.data.message);
+                            console.log(err.response.status);
+                            console.log(err.response.headers);
+                            navigate('./', {replace : true}); // opens in existing window
+                        }
+                        
+                    }else{ // catch any other errors in this request
                         console.log(err.response.data.message);
                         console.log(err.response.status);
                         console.log(err.response.headers);
-                        navigate('./', {replace : true}); // opens in existing window
-                      }
-                    
-                }else{ // catch any other errors in this request
-                    console.log(err.response.data.message);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                    
-                }
+                        
+                    }
 
+                }
+                
+                finally{
+                    clearForm(); // clearing out text boxes on button click
+                }
             }
-            
-            finally{
-                flightIdRef.current.value=null; // clearing out text boxes on button click
-                depCityRef.current.value=null;
-                depDateRef.current.value=null;
-                depTimeRef.current.value=null;
-                arrCityRef.current.value=null;
-                arrDateRef.current.value=null;
-                arrTimeRef.current.value=null;
-                curPassRef.current.value=null;
-                maxPassRef.current.value=null;
+            else
+            {
+                alert("Required information missing.\nVerify that Flight ID, Departure City, and Arrival City are complete and try again.")
+                clearForm();
             }
         }
     }
