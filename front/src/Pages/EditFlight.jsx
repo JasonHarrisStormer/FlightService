@@ -22,11 +22,12 @@ export const EditFlight = () => {
     const navigate = useNavigate();
 
     const editFlight = async (params) => {
-        let maxPassNow = maxPassRef.current.value;
+        let maxPassNow = maxPassRef.current.value; // making useRef variables into let variables to be used for if checks and declarations
         let curPassNow = curPassRef.current.value;
-        
-        if(maxPassNow > curPassNow){
-            const exceedPass = curPassNow - maxPassNow;
+        const exceedPass = curPassNow - maxPassNow;
+
+        if(exceedPass > 0){
+            
             alert(`Maximum capacity is ${maxPassNow}. \nAdding ${curPassNow} will cause the flight to exceed capacity by ${exceedPass}! 
                     \nPlease re-create the flight with an acceptable number of passengers.`)
             flightIdRef.current.value=null; // clearing out text boxes on button click
@@ -73,9 +74,9 @@ export const EditFlight = () => {
                 if(err.response.status === 404){
                     
                     if (window.confirm("Flight not in database! \nWould you like to go create it now?")) { // if they want to create a flight, send them to the create page
-                        //window.open("../createflight","You pressed OK!"); // opens in a new window
-                        navigate('../createflight', {replace : true}); // opens in existing window
-                      } else { // if they do not want to create a flight, refresh this page and log the error
+                        //window.open("../createflight","You pressed OK!"); // uncomment this if you want it to open in a new window
+                        navigate('../createflight', {replace : true}); // comment this out if you do not want it to open in the existing window
+                      } else { // if they chose not to create a flight, refresh this page and log the error
                         console.log(err.response.data.message);
                         console.log(err.response.status);
                         console.log(err.response.headers);

@@ -21,15 +21,24 @@ export const SearchFlights = () => {
     }
     
     const searchFlights = async (params) => {
+            let curFlightId = flightIdRef.current.value; // converting current dat a to variable for if checks 
             
             try{
-                const res = await axios.get(`http://localhost:8086/flight/${flightIdRef.current.value}`)
-                setFlights(res.data);
-                console.log(res.data);
-            }catch(err){
+                if( curFlightId !== "") // if the string is not empty, do the search
+                {
+                    const res = await axios.get(`http://localhost:8086/flight/${flightIdRef.current.value}`)
+                    setFlights(res.data);
+                    
+                }
+                else // if the string is empty or a null value, throw an alert and clear the form
+                {
+                    setFlights();
+                    alert(`You must enter a flight number to search!`)
+                }
+            }catch(err){ // if the value is not empty and is not in the database, send the error to the alert window and clear the search
                 setFlights(); // remove response form when not found
                 alert(err.response.data.message);
-            }finally{
+            }finally{ // clear the input box on submit
                 flightIdRef.current.value=null; // clearing out text boxes on button click
             }
     }
@@ -54,7 +63,7 @@ export const SearchFlights = () => {
             <div className="container">
                 {/* Transforming the flights araay into an array of JSX elements for display and formatting */}
                     {flight && <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
-                        <div key={flight._id}> {/* creating the display for multiple flights in a flex grid with backgrounds and boarders */ }
+                        <div key={flight._id}> {/* creating the display for flight results with backgrounds and boarders */ }
                             
                             <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
                             <div><strong>Departure City: </strong>{flight.depCity}</div>

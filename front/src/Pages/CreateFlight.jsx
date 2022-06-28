@@ -23,7 +23,7 @@ export const CreateFlight = () => {
         let maxPassNow = maxPassRef.current.value;
         let curPassNow = curPassRef.current.value;
         
-        if(maxPassNow > curPassNow){
+        if(maxPassNow < curPassNow){
             const exceedPass = curPassNow - maxPassNow;
             alert(`Maximum capacity is ${maxPassNow}. \nAdding ${curPassNow} will cause the flight to exceed capacity by ${exceedPass}! 
                     \nPlease re-create the flight with an acceptable number of passengers.`)

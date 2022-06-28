@@ -11,10 +11,10 @@ export const Flights = () => {
 
     useEffect(() => {
         axios.get('http://localhost:8086/flight')
-        .then(res => setFlights(res.data));
+        .then(res => setFlights(res.data)); // getting the info to display all flights
     });
 
-    const deleteFlight = async (flightId) => { // deleting the flight on submit
+    const deleteFlight = async (flightId) => { // deleting the flight on submit of the 'delete flight' button
             try{
                 
                 await axios.delete(`http://localhost:8086/flight/${flightId}`);
