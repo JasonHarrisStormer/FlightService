@@ -11,14 +11,14 @@ const App = () =>{
 
     return(
         <BrowserRouter>
-            
+            <Center>
             <div className="App">
-            <header header className="App-header">
+            <header header className="App-header"  >
                 <img src={ logo } className="App-logo" alt="logo" height="250"/> 
-                <h1><div>Flight Services</div></h1></header>       
-            
-            </div>
-            <Center><div><AppNav /></div></Center>
+                <h1><div>Flight Services</div></h1>
+            </header>       
+            </div></Center>
+            <AppNav />
             <Routes>
             <Route path="/" element={<Landing />} />
                     <Route path="/flights" element={<Flights />} />
@@ -27,7 +27,9 @@ const App = () =>{
                     <Route path="/editflight" element={<EditFlight />} />
                     <Route path="*" element={<Error />} />
             </Routes>
-                
+            
+            
+            
         </BrowserRouter>
     );
 }

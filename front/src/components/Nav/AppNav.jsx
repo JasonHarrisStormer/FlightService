@@ -7,7 +7,7 @@ import { Nav } from './Nav';
 export const AppNav = () => {
 
     return (
-        <Nav backgroundColor='#87CEEB' color='black'>
+        <Nav backgroundColor='#096f97' color='black'>
             <NavSection jc="flex-start">
                 <NavItem>
                     <NavLink to="/">Home</NavLink>
