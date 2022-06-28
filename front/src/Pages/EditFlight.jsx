@@ -20,18 +20,6 @@ export const EditFlight = () => {
     const curPassRef = useRef();
     const maxPassRef = useRef();
     const navigate = useNavigate();
-    
-
-    // const deleteFlight = async (flightId) => { // deleting the flight on submit of the delete flight button inside the flight display
-    //     try{
-    //         await axios.delete(`http://localhost:8086/flight/${flightId}`);
-    //         navigate('./', {replace:true});
-            
-    //     }catch(err){
-    //         setFlights();
-    //         console.log(err);
-    //     }
-    // }
 
     const editFlight = async (params) => {
         
@@ -50,9 +38,9 @@ export const EditFlight = () => {
                             });
                 console.log(res.data);
                 setFlights(res.data);
-                if (window.confirm("Flight edited successfully. \nProcees to flight list to view?."))
+                if (window.confirm("Flight edited successfully. \nProceed to the main flight list to view changes?."))
                 {
-                    //window.open('../flights', "You pressed ok!"); // opens in a new window
+                    //window.open('../flights', "You pressed ok!"); // uncomment this line to open in a new window
                     navigate('../flights', {replace : true}); // opens in existing window
                 }
                 else
@@ -65,7 +53,6 @@ export const EditFlight = () => {
             catch(err) // catching the errors, and redirecting as needed
             {
                 if(err.response.status === 404){
-                    // alert("Flight not in database, please create flight.");
                     
                     if (window.confirm("Flight not in database! \nWould you like to go create it now?")) { // if they want to create a flight, send them to the create page
                         //window.open("../createflight","You pressed OK!"); // opens in a new window
@@ -74,7 +61,6 @@ export const EditFlight = () => {
                         console.log(err.response.data.message);
                         console.log(err.response.status);
                         console.log(err.response.headers);
-                        //setFlights();
                         navigate('./', {replace : true}); // opens in existing window
                       }
                     
@@ -82,7 +68,7 @@ export const EditFlight = () => {
                     console.log(err.response.data.message);
                     console.log(err.response.status);
                     console.log(err.response.headers);
-                    //setFlights();
+                    
                 }
 
             }
@@ -161,25 +147,6 @@ export const EditFlight = () => {
                 </form>
            </div>
         </Center>
-        {/* <Center>
-            <div class="container">
-                    {flight && <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id) }}>
-                        <div key={flight._id}> {/* creating the display for multiple flights in a flex grid with backgrounds and boarders }
-                            
-                            <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
-                            <div><strong>Departure City: </strong>{flight.depCity}</div>
-                            <div><strong>Departure Time: </strong>{flight.depTime}</div>
-                            <div><strong>Departure Date: </strong>{flight.depDate}</div>
-                            <div><strong>Arrival City: </strong>{flight.arrCity}</div>
-                            <div><strong>Arrival Time: </strong>{flight.arrTime}</div>
-                            <div><strong>Arrival Date: </strong>{flight.arrDate}</div>
-                            <div><strong>Passengers: </strong>{flight.curPass}</div>
-                            <div><strong>Max Seats: </strong>{flight.maxPass}</div>
-                            <input type="submit" value="Delete Flight" />
-                        </div>
-                    </form>}
-            </div>
-        </Center> */}
         </>
     );
 }
