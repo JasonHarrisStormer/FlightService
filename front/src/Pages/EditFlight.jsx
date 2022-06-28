@@ -50,6 +50,16 @@ export const EditFlight = () => {
                             });
                 console.log(res.data);
                 setFlights(res.data);
+                if (window.confirm("Flight edited successfully. \nProcees to flight list to view?."))
+                {
+                    //window.open('../flights', "You pressed ok!"); // opens in a new window
+                    navigate('../flights', {replace : true}); // opens in existing window
+                }
+                else
+                {
+                    setFlights();
+                    navigate('./', {replace : true}); // opens in existing window
+                };
             }
             
             catch(err) // catching the errors, and redirecting as needed
@@ -58,14 +68,14 @@ export const EditFlight = () => {
                     // alert("Flight not in database, please create flight.");
                     
                     if (window.confirm("Flight not in database! \nWould you like to go create it now?")) { // if they want to create a flight, send them to the create page
-                        window.open("../createflight","You pressed OK!");
-                        navigate('../createflight', {replace : true});
+                        //window.open("../createflight","You pressed OK!"); // opens in a new window
+                        navigate('../createflight', {replace : true}); // opens in existing window
                       } else { // if they do not want to create a flight, refresh this page and log the error
                         console.log(err.response.data.message);
                         console.log(err.response.status);
                         console.log(err.response.headers);
                         //setFlights();
-                        navigate('./', {replace : true});
+                        navigate('./', {replace : true}); // opens in existing window
                       }
                     
                 }else{ // catch any other errors in this request
