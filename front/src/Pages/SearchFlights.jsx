@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 
+
 export const SearchFlights = () => {
     const [flight, setFlights] = useState();
     const flightIdRef = useRef();

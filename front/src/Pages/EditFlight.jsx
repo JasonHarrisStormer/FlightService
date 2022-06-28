@@ -20,16 +20,17 @@ export const EditFlight = () => {
     const curPassRef = useRef();
     const maxPassRef = useRef();
     const navigate = useNavigate();
+
     const clearForm = () => {
         flightIdRef.current.value=null; // clearing out text boxes on button click
-                    depCityRef.current.value=null;
-                    depDateRef.current.value=null;
-                    depTimeRef.current.value=null;
-                    arrCityRef.current.value=null;
-                    arrDateRef.current.value=null;
-                    arrTimeRef.current.value=null;
-                    curPassRef.current.value=null;
-                    maxPassRef.current.value=null;
+        depCityRef.current.value=null;
+        depDateRef.current.value=null;
+        depTimeRef.current.value=null;
+        arrCityRef.current.value=null;
+        arrDateRef.current.value=null;
+        arrTimeRef.current.value=null;
+        curPassRef.current.value=null;
+        maxPassRef.current.value=null;
     };
 
     const editFlight = async (params) => {

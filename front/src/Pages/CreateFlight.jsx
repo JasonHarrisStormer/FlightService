@@ -18,6 +18,18 @@ export const CreateFlight = () => {
     const curPassRef = useRef();
     const navigate = useNavigate();
 
+    const clearForm = () => {
+        flightIdRef.current.value=null; // clearing out text boxes on button click
+        depCityRef.current.value=null;
+        depDateRef.current.value=null;
+        depTimeRef.current.value=null;
+        arrCityRef.current.value=null;
+        arrDateRef.current.value=null;
+        arrTimeRef.current.value=null;
+        curPassRef.current.value=null;
+        maxPassRef.current.value=null;
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault(); // prevents page refresh on submit
         let maxPassNow = maxPassRef.current.value;
@@ -27,15 +39,7 @@ export const CreateFlight = () => {
             const exceedPass = curPassNow - maxPassNow;
             alert(`Maximum capacity is ${maxPassNow}. \nAdding ${curPassNow} will cause the flight to exceed capacity by ${exceedPass}! 
                     \nPlease re-create the flight with an acceptable number of passengers.`)
-            flightIdRef.current.value=null; // clearing out text boxes on button click
-            depCityRef.current.value=null;
-            depDateRef.current.value=null;
-            depTimeRef.current.value=null;
-            arrCityRef.current.value=null;
-            arrDateRef.current.value=null;
-            arrTimeRef.current.value=null;
-            curPassRef.current.value=null;
-            maxPassRef.current.value=null;
+            clearForm(); // clearing out text boxes on button click
         }
         else
         {
@@ -60,15 +64,7 @@ export const CreateFlight = () => {
             }
             finally
             {
-                    flightIdRef.current.value=null; // clearing out text boxes on button click
-                    depCityRef.current.value=null;
-                    depDateRef.current.value=null;
-                    depTimeRef.current.value=null;
-                    arrCityRef.current.value=null;
-                    arrDateRef.current.value=null;
-                    arrTimeRef.current.value=null;
-                    curPassRef.current.value=null;
-                    maxPassRef.current.value=null;
+                    clearForm();// clearing out text boxes on button click
             }
         }
             
