@@ -22,7 +22,25 @@ export const EditFlight = () => {
     const navigate = useNavigate();
 
     const editFlight = async (params) => {
+        let maxPassNow = maxPassRef.current.value;
+        let curPassNow = curPassRef.current.value;
         
+        if(maxPassNow > curPassNow){
+            const exceedPass = curPassNow - maxPassNow;
+            alert(`Maximum capacity is ${maxPassNow}. \nAdding ${curPassNow} will cause the flight to exceed capacity by ${exceedPass}! 
+                    \nPlease re-create the flight with an acceptable number of passengers.`)
+            flightIdRef.current.value=null; // clearing out text boxes on button click
+            depCityRef.current.value=null;
+            depDateRef.current.value=null;
+            depTimeRef.current.value=null;
+            arrCityRef.current.value=null;
+            arrDateRef.current.value=null;
+            arrTimeRef.current.value=null;
+            curPassRef.current.value=null;
+            maxPassRef.current.value=null;
+        }
+        else
+        {
             try{
                 const res = await axios.put('http://localhost:8086/flight', // putting the information and editing the searched for element
                             {
@@ -84,6 +102,7 @@ export const EditFlight = () => {
                 curPassRef.current.value=null;
                 maxPassRef.current.value=null;
             }
+        }
     }
     return(
         <>
