@@ -20,15 +20,20 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: lightblue;
+  color: rgb(243, 235, 243);
 }
 body{
   background-position-y: 415px;
-  background-size: 150vw;
+  background-size: 100%;
   background-image: url("Narita.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 .App-link {
-  color: #61dafb;
+  color: #1e0785;
+}
+.whitetext{
+  
+     color: rgb(22, 19, 197); 
+  
 }

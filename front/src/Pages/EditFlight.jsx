@@ -116,7 +116,7 @@ export const EditFlight = () => {
         <>
         <Center>
             {/* Transforming the flight array into an array of JSX elements for display and formatting */}
-           <div>
+           <div >
                 <form onSubmit= {(event) => { 
                     event.preventDefault(); // prevent the page from reloading
                     editFlight // edit the flight object with the information entered
@@ -131,46 +131,46 @@ export const EditFlight = () => {
                         curPass : curPassRef.current.value,
                         maxPass : maxPassRef.current.value
                     })}}>
+                    <div className="container" >
+                        <div>
+                            <label htmlFor="flight" className='whitetext'>Flight ID Number: </label>
+                            <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
+                        </div><p></p>
+                    </div>
                     <div className="container">
-                    <div>
-                        <label htmlFor="flight">Flight ID Number: </label>
-                        <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
-                    </div><p></p>
-                </div>
-                <div className="container">
-                    <div>
-                        
-                        <label htmlFor="depCity">Departure City: </label>
-                        <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
-                        
-                        <label htmlFor="depTime">Departure Time: </label>
-                        <div><input id="depTime" placeholder="Enter Departure Time" ref={depTimeRef}/></div>
-                        
-                        <label htmlFor="depDate">Departure Date: </label>
-                        <div><input id="depDate" placeholder="Enter Departure Date" ref={depDateRef}/></div>
+                        <div>
+                            
+                            <label htmlFor="depCity" className='whitetext'>Departure City: </label>
+                            <div><input id="depCity" placeholder="Enter Departure City" ref={depCityRef}/></div>
+                            
+                            <label htmlFor="depTime" className='whitetext'>Departure Time: </label>
+                            <div><input id="depTime" placeholder="Enter Departure Time" ref={depTimeRef}/></div>
+                            
+                            <label htmlFor="depDate" className='whitetext'>Departure Date: </label>
+                            <div><input id="depDate" placeholder="Enter Departure Date" ref={depDateRef}/></div>
+                        </div>
+                        <div>
+                            <label htmlFor="arrCity" className='whitetext'>Arrival City: </label>
+                            <div><input id="arrCity" placeholder="Enter Arrival City" ref={arrCityRef}/></div>
+                            
+                            <label htmlFor="arrTime" className='whitetext'>Arrival Time: </label>
+                            <div><input id="arrTime" placeholder="Enter Arrival Time" ref={arrTimeRef}/></div>
+                            
+                            <label htmlFor="arrDate" className='whitetext'>Arrival Date: </label>
+                            <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="arrCity">Arrival City: </label>
-                        <div><input id="arrCity" placeholder="Enter Arrival City" ref={arrCityRef}/></div>
-                        
-                        <label htmlFor="arrTime">Arrival Time: </label>
-                        <div><input id="arrTime" placeholder="Enter Arrival Time" ref={arrTimeRef}/></div>
-                        
-                        <label htmlFor="arrDate">Arrival Date: </label>
-                        <div><input id="arrDate" placeholder="Enter Arrival Date" ref={arrDateRef}/></div>
-                    </div>
-                </div>
-                <div className="container">
-                    <label htmlFor="maxPass" >Maximum Passengers: </label>
-                    <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
-                </div>
-                <div className="container">
-                    <label htmlFor="currPass" >Passengers: </label>
-                    <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
-                </div>
                     <div className="container">
-                        <input type="submit" value="Edit Flight" />
+                        <label htmlFor="maxPass" className='whitetext'>Maximum Passengers: </label>
+                        <div><input id="maxPass" placeholder="Maximum Passengers" ref={maxPassRef}/></div>
                     </div>
+                    <div className="container">
+                        <label htmlFor="currPass" className='whitetext'>Passengers: </label>
+                        <div><input id="currPass" placeholder="Current Number of Passengers" ref={curPassRef}/></div>
+                    </div>
+                        <div className="container">
+                            <input type="submit" value="Edit Flight" />
+                        </div>
                 </form>
            </div>
         </Center>

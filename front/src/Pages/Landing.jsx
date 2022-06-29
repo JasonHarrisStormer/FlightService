@@ -5,7 +5,7 @@ export const Landing = () => {
     return(
         <body>
             <Center>
-                <h2>Welcome to Flight Services
+                <h2 className='whitetext'>Welcome to Flight Services
                Management Portal!</h2>
             </Center>
         </body>
