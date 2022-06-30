@@ -2,18 +2,22 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
-    border: 5px solid rgb(238, 241, 241);
+    border: 5px solid darkgoldenrod;
     border-radius: 30%;
-    background-color: #190ae2;
+    background-size: 200%;
+    background-position-y: -100px;
+    background-position-x: -125px;
+    background-image: url("../../82164.jpg");
+    background-repeat: no-repeat;
     width: 240px;
-    height: 220px;
+    height: auto;
     margin: auto;
     padding: 25px;
-    color: rgb(245, 248, 250);
+    color:blue;
     
 }
 .container{
-    color: white;
+    
     margin: 10px;
     display:flex;
     flex-wrap:wrap;
@@ -27,16 +31,31 @@
 
 .SearchForm {
     margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
     border: 5px solid rgb(238, 241, 241);
     border-radius: 30%;
-    background-color: #190ae2;
+    background-position-y: 5px;
+    background-size: 100%;
+    background-image: url("../../70204.jpg");
+    background-repeat: no-repeat;
     width: 200px;
-    height: 50px;
+    height: 75px;
     margin: auto;
     padding: 25px;
-    color: rgb(245, 248, 250);
-    
+    color: white;
+}
+
+.CreateForm {
+    margin-top: 20px;
+    border: 10px solid black;
+    border-radius: 30%;
+    background-position-y: 5px;
+    background-size: 100%;
+    background-image: url("../../50169.jpg");
+    background-repeat: no-repeat;
+    width: 400px;
+    height:240px;
+    margin: auto;
+    padding: 52px;
+    color: red;
 }
 

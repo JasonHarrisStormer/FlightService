@@ -48,15 +48,18 @@ export const SearchFlights = () => {
         <Center>
             <form onSubmit= {(event) => { event.preventDefault(); searchFlights({
                     flightNumber : flightIdRef.current.value})}}>
+                
                 <div className="SearchForm">
                     
                     <div>
-                        <label htmlFor="flight" >Flight ID Number: </label>
+                        <label htmlFor="flight"><strong> Flight ID for Search: </strong></label>
                         <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
                     </div>
-                </div>
-                <div className="container">
-                    <input type="submit" value="Search Flight" />
+                
+                    <div className="container">
+                        <input type="submit" value="Search Flight" />
+                    </div>
+
                 </div>
             </form>
         </Center>

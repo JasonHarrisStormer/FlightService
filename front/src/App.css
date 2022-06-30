@@ -10,7 +10,7 @@
 
 .App-header {
   background-size: 100vw;
-  background-image: url("Header_BG.jpg");
+  background-color:darkblue;
   background-repeat: no-repeat;
   background-attachment: fixed;
   
@@ -23,9 +23,9 @@
   color: rgb(243, 235, 243);
 }
 body{
-  background-position-y: 415px;
+  background-position-y: 15px;
   background-size: 100%;
-  background-image: url("Narita.jpg");
+  background-image: url("63557.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -33,7 +33,7 @@ body{
   color: #1e0785;
 }
 .whitetext{
-  
-     color: rgb(22, 19, 197); 
+    
+     color: white; 
   
 }
