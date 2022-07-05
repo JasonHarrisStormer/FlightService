@@ -3,7 +3,7 @@ import './App.css';
 import { AppNav } from './components/Nav';
 import { Center } from './components/Formatting';
 import { Landing, Flights, EditFlight, Error, CreateFlight, SearchFlights } from './pages';
-import logo from './57082.png';
+import logo from './NicePng_plane-emoji-png_1468456.png';
 
 
 const App = () =>{
