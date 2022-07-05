@@ -2,7 +2,7 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
-    border: 5px solid darkgoldenrod;
+    border: 2px solid darkgoldenrod;
     border-radius: 30%;
     background-size: 200%;
     background-position-y: -100px;
@@ -31,31 +31,36 @@
 
 .SearchForm {
     margin-top: 20px;
-    border: 5px solid rgb(238, 241, 241);
+    border: 2px solid darkgoldenrod;
     border-radius: 30%;
-    background-position-y: 1px;
-    background-size: 100%;
-    background-image: url("../../70204.jpg");
+    background-size: 200%;
+    background-position-y: -180px;
+    background-position-x: -125px;
+    background-image: url("../../82164.jpg");
     background-repeat: no-repeat;
     width: 200px;
     height: 75px;
     margin: auto;
     padding: 25px;
-    color: white;
+    color: blue;
 }
 
 .CreateForm {
     margin-top: 20px;
-    border: 10px solid black;
+    border: 2px solid darkgoldenrod;
     border-radius: 30%;
-    background-position-y: 5px;
-    background-size: 100%;
-    background-image: url("../../50169.jpg");
+    background-size: 200%;
+    background-position-y: -275px;
+    background-position-x: -210px;
+    background-image: url("../../82164.jpg");
     background-repeat: no-repeat;
     width: 400px;
     height:240px;
     margin: auto;
-    padding: 52px;
-    color: red;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 70px;
+    color:blue;
 }
 

@@ -30,7 +30,9 @@ export const Flights = () => {
             <div className="container">
             
             {/* Transforming the flights araay into an array of JSX elements for display and formatting */}
-            {flight.map((flight, index) => {
+            {flight
+                .sort((a, b) => b.count_filtered - a.count_filtered)
+                .map((flight, index) => {
                 return(
                     <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
                         <div key={flight._id}> {/* creating the display for multiple flights in a flex grid with backgrounds and boarders */ }
