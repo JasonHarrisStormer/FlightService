@@ -34,9 +34,10 @@ export const CreateFlight = () => {
         event.preventDefault(); // prevents page refresh on submit
         let maxPassNow = maxPassRef.current.value;
         let curPassNow = curPassRef.current.value;
+        const exceedPass = curPassNow - maxPassNow;
         
-        if(maxPassNow < curPassNow){
-            const exceedPass = curPassNow - maxPassNow;
+        if(exceedPass >= 0){
+            
             alert(`Maximum capacity is ${maxPassNow}. \nAdding ${curPassNow} will cause the flight to exceed capacity by ${exceedPass}! 
                     \nPlease re-create the flight with an acceptable number of passengers.`)
             clearForm(); // clearing out text boxes on button click

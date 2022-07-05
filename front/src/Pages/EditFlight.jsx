@@ -41,7 +41,7 @@ export const EditFlight = () => {
         let arrCityNow = arrCityRef.current.value;
         let depCityNow = depCityRef.current.value;
 
-        if(exceedPass > 0){
+        if(exceedPass >= 0){
             
             alert(`Maximum capacity is ${maxPassNow}. \nAdding ${curPassNow} will cause the flight to exceed capacity by ${exceedPass}! 
                     \nPlease re-create the flight with an acceptable number of passengers.`)
