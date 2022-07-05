@@ -74,8 +74,8 @@ export const CreateFlight = () => {
 
     return (
         <Center>
-            <form onSubmit={handleSubmit}>
-                <div className="CreateForm">
+            <form onSubmit={handleSubmit} >
+                <div className="CreateForm" >
                     <div className="container" >
                         <div>
                             <label htmlFor="flight" ><strong>Create Flight ID: </strong></label>

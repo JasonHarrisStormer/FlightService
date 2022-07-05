@@ -10,9 +10,8 @@
 
 .App-header {
   background-size: 100vw;
-  background-color:darkblue;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-color:rgb(6, 52, 122);
+ 
   
   width: 100vw;
   display: flex;
@@ -23,17 +22,19 @@
   color: rgb(243, 235, 243);
 }
 body{
-  background-position-y: 15px;
+  background-position-y: 210px;
   background-size: 100%;
-  background-image: url("63557.jpg");
+  background-image: url("63557.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-color:skyblue;
+  color: black;
 }
 .App-link {
   color: #1e0785;
 }
 .whitetext{
     
-     color: white; 
+     margin-top: 150px; 
   
 }
