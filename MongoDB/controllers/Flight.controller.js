@@ -14,14 +14,14 @@ const createFlight = async ({flightNumber, depCity, depTime, depDate, arrCity, a
             curPass 
             
         }); // This alone does not save to the database, this just simply prepares for the database
-        await flight.save(); // Saves the newly created movie to the database
+        await flight.save(); // Saves the newly created flight to the database
 
-        return flight._id; // Return the id of the newly created. Could also return the entire object
+        return flight._id; // Return the db id of the newly created flight. Could also return the entire object
     } 
-    // This catch will occur if any of the values are up to standard
+    // This catch will occur if any of the values are not up to standard
     catch (err) {
         console.error(err);
-        throw { status: 400, message: err };
+        throw { status: 428, message: err };
     }
 }
 const updateFlight = async (updatedFlight) =>{
