@@ -36,7 +36,7 @@ export const CreateFlight = () => {
         let curPassNow = curPassRef.current.value;
         const exceedPass = curPassNow - maxPassNow;
         
-        if(exceedPass >= 0){
+        if(exceedPass > 0){
             
             alert(`Maximum capacity is ${maxPassNow}. \nAdding ${curPassNow} will cause the flight to exceed capacity by ${exceedPass}! 
                     \nPlease re-create the flight with an acceptable number of passengers.`)
@@ -54,7 +54,7 @@ export const CreateFlight = () => {
             }
             catch(error)
             {
-                if (error.message.indexOf("0") !==1)
+                if (error.response.status === 428)
                 {
                     alert("The required inputs have not been entered, \nor that flight number is already in use. \n Check your inputs, and please try again.");
                     console.log(error.response.data.message);
