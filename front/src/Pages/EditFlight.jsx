@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 export const EditFlight = () => {
+    // eslint-disable-next-line no-unused-vars
     const [flight, setFlights] = useState();
 
     useEffect(() => {

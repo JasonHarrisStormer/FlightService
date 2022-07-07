@@ -56,7 +56,7 @@ export const CreateFlight = () => {
             {
                 if (error.response.status === 428)
                 {
-                    alert("The required inputs have not been entered, \nor that flight number is already in use. \n Check your inputs, and please try again.");
+                    alert("The required inputs have not been entered correctly. \nor that flight number is already in use. \n Check your inputs, and please try again.");
                     console.log(error.response.data.message);
                 }
                 else{
