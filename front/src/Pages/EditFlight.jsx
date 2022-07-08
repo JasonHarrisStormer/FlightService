@@ -135,7 +135,7 @@ export const EditFlight = () => {
                         <div className="CreateForm">
                             <div className="container" >
                                 <div>
-                                    <label htmlFor="flight"><strong>Flight ID to Edit: </strong></label>
+                                    <label htmlFor="flight"><strong>Which Flight ID to Edit? </strong></label>
                                     <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
                                 </div><p></p>
                             </div>

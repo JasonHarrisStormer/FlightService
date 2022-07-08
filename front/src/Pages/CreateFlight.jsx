@@ -78,7 +78,7 @@ export const CreateFlight = () => {
                 <div className="CreateForm" >
                     <div className="container" >
                         <div>
-                            <label htmlFor="flight" ><strong>Create Flight ID: </strong></label>
+                            <label htmlFor="flight" ><strong>&nbsp;  ---CREATE FLIGHT---</strong></label>
                             <div><input id="flight" placeholder="Enter Flight ID Number" ref={flightIdRef}/></div>
                         </div><p></p>
                     </div>

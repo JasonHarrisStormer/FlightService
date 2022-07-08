@@ -26,6 +26,9 @@ export const Flights = () => {
         }
 
     return(
+        <><Center>
+            <div className = "container"><h2> ALL FLIGHTS CURRENTLY IN DATABASE</h2></div>
+        </Center>
         <Center>
             <div className="container">
             
@@ -54,5 +57,6 @@ export const Flights = () => {
             
             </div>
         </Center>
+        </>
     );
 }
