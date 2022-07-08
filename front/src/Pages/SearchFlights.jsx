@@ -68,7 +68,7 @@ export const SearchFlights = () => {
             <div className="container">
                 {/* Transforming the flights araay into an array of JSX elements for display and formatting */}
                     {flight && <form className="FlightForm" onSubmit= {(event) => { deleteFlight(flight._id)}}>
-                        <div key={flight._id}> {/* creating the display for flight results with backgrounds and boarders */ }
+                        <div key={flight._id}> {/* creating the hidden display for flight results with backgrounds and boarders */ }
                             
                             <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
                             <div><strong>Departure City: </strong>{flight.depCity}</div>
