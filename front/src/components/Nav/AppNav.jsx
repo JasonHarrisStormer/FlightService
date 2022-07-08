@@ -13,7 +13,7 @@ export const AppNav = () => {
                     <NavLink to="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink to="/flights">Complete Flight List</NavLink>
+                    <NavLink to="/flights">List All Flights</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink to="/createflight"> Create Flight</NavLink>
