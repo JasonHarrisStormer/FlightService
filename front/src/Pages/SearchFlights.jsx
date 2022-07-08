@@ -14,6 +14,7 @@ export const SearchFlights = () => {
         try{
             
             await axios.delete(`http://localhost:8086/flight/${flightId}`);
+            setFlights();
             navigate('./', {replace:true});
             
         }catch(err){
@@ -66,7 +67,7 @@ export const SearchFlights = () => {
             <Center>
             <div className="container">
                 {/* Transforming the flights araay into an array of JSX elements for display and formatting */}
-                    {flight && <form className="FlightForm" onSubmit= {(event) => { event.preventDefault(); deleteFlight(flight._id)}}>
+                    {flight && <form className="FlightForm" onSubmit= {(event) => { deleteFlight(flight._id)}}>
                         <div key={flight._id}> {/* creating the display for flight results with backgrounds and boarders */ }
                             
                             <div><strong>Flight ID: </strong>{flight.flightNumber}</div> 
